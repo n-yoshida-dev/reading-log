@@ -42,8 +42,11 @@ layout: default
       </div>
 
       <dl class="metadata">
+        {% if page.isbn10 %}<div><dt>ISBN-10</dt><dd>{{ page.isbn10 }}</dd></div>{% endif %}
         {% if page.isbn13 %}<div><dt>ISBN-13</dt><dd>{{ page.isbn13 }}</dd></div>{% endif %}
         {% if page.publisher %}<div><dt>出版社</dt><dd>{{ page.publisher }}</dd></div>{% endif %}
+        {% if page.published_at %}<div><dt>刊行日</dt><dd>{{ page.published_at | date: '%Y-%m-%d' }}</dd></div>{% endif %}
+        {% if page.page_count %}<div><dt>ページ数</dt><dd>{{ page.page_count }}ページ</dd></div>{% endif %}
         {% if page.started_at %}<div><dt>開始</dt><dd>{{ page.started_at | date: '%Y-%m-%d' }}</dd></div>{% endif %}
         {% if page.finished_at %}<div><dt>完了</dt><dd>{{ page.finished_at | date: '%Y-%m-%d' }}</dd></div>{% endif %}
         {% if page.last_read_at %}<div><dt>最終読書</dt><dd>{{ page.last_read_at | date: '%Y-%m-%d' }}</dd></div>{% endif %}

@@ -6,10 +6,12 @@
 ---
 title: ""
 author: ""
+isbn10: ""
 isbn13: ""
 edition: ""
 publisher: ""
 published_at:
+page_count:
 status: unread
 progress: 0
 reading_order: 999
