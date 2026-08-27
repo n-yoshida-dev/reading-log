@@ -1,0 +1,44 @@
+{% assign book = include.book %}
+{% assign status_label = book.status %}
+{% if book.status == 'unread' %}{% assign status_label = '未読' %}{% endif %}
+{% if book.status == 'reading' %}{% assign status_label = '読書中' %}{% endif %}
+{% if book.status == 'paused' %}{% assign status_label = '一時停止' %}{% endif %}
+{% if book.status == 'finished' %}{% assign status_label = '読了' %}{% endif %}
+{% if book.status == 'skimmed' %}{% assign status_label = '拾い読み完了' %}{% endif %}
+{% if book.status == 'abandoned' %}{% assign status_label = '中止' %}{% endif %}
+{% assign progress = book.progress | default: 0 %}
+
+<article class="book-card">
+  <a class="book-card__cover-link" href="{{ book.url | relative_url }}" aria-label="『{{ book.title | escape }}』の記録を見る">
+    <div class="book-cover">
+      {% if book.cover_image %}
+        {% assign cover_prefix = book.cover_image | slice: 0, 4 %}
+        {% if cover_prefix == 'http' %}
+          <img src="{{ book.cover_image }}" alt="『{{ book.title | escape }}』の表紙" loading="lazy">
+        {% else %}
+          <img src="{{ book.cover_image | relative_url }}" alt="『{{ book.title | escape }}』の表紙" loading="lazy">
+        {% endif %}
+      {% else %}
+        <div class="book-cover__placeholder">
+          <span>{{ book.title }}</span>
+          {% if book.author %}<small>{{ book.author }}</small>{% endif %}
+        </div>
+      {% endif %}
+    </div>
+  </a>
+
+  <div class="book-card__content">
+    <div class="book-card__eyebrow">
+      <span class="status status--{{ book.status }}">{{ status_label }}</span>
+      {% if book.reading_order %}<span class="order">#{{ book.reading_order }}</span>{% endif %}
+    </div>
+    <h3><a href="{{ book.url | relative_url }}">{{ book.title }}</a></h3>
+    {% if book.author %}<p class="book-card__author">{{ book.author }}</p>{% endif %}
+    {% if book.purpose %}<p class="book-card__purpose">{{ book.purpose }}</p>{% endif %}
+
+    <div class="progress progress--compact" aria-label="進捗 {{ progress }}%">
+      <div class="progress__meta"><span>進捗</span><strong>{{ progress }}%</strong></div>
+      <div class="progress__track"><span style="width: {{ progress }}%"></span></div>
+    </div>
+  </div>
+</article>

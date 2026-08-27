@@ -1,0 +1,67 @@
+---
+layout: default
+---
+{% assign status_label = page.status %}
+{% if page.status == 'unread' %}{% assign status_label = '未読' %}{% endif %}
+{% if page.status == 'reading' %}{% assign status_label = '読書中' %}{% endif %}
+{% if page.status == 'paused' %}{% assign status_label = '一時停止' %}{% endif %}
+{% if page.status == 'finished' %}{% assign status_label = '読了' %}{% endif %}
+{% if page.status == 'skimmed' %}{% assign status_label = '拾い読み完了' %}{% endif %}
+{% if page.status == 'abandoned' %}{% assign status_label = '中止' %}{% endif %}
+{% assign progress = page.progress | default: 0 %}
+
+<a class="back-link" href="{{ '/' | relative_url }}">← 本棚へ戻る</a>
+
+<article class="book-detail">
+  <header class="book-detail__header">
+    <div class="book-cover book-cover--large">
+      {% if page.cover_image %}
+        {% assign cover_prefix = page.cover_image | slice: 0, 4 %}
+        {% if cover_prefix == 'http' %}
+          <img src="{{ page.cover_image }}" alt="『{{ page.title | escape }}』の表紙">
+        {% else %}
+          <img src="{{ page.cover_image | relative_url }}" alt="『{{ page.title | escape }}』の表紙">
+        {% endif %}
+      {% else %}
+        <div class="book-cover__placeholder">
+          <span>{{ page.title }}</span>
+          {% if page.author %}<small>{{ page.author }}</small>{% endif %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="book-detail__summary">
+      <span class="status status--{{ page.status }}">{{ status_label }}</span>
+      <h1>{{ page.title }}</h1>
+      {% if page.author %}<p class="book-detail__author">{{ page.author }}</p>{% endif %}
+      {% if page.purpose %}<p class="book-detail__purpose">{{ page.purpose }}</p>{% endif %}
+
+      <div class="progress" aria-label="進捗 {{ progress }}%">
+        <div class="progress__meta"><span>進捗</span><strong>{{ progress }}%</strong></div>
+        <div class="progress__track"><span style="width: {{ progress }}%"></span></div>
+      </div>
+
+      <dl class="metadata">
+        {% if page.isbn13 %}<div><dt>ISBN-13</dt><dd>{{ page.isbn13 }}</dd></div>{% endif %}
+        {% if page.publisher %}<div><dt>出版社</dt><dd>{{ page.publisher }}</dd></div>{% endif %}
+        {% if page.started_at %}<div><dt>開始</dt><dd>{{ page.started_at | date: '%Y-%m-%d' }}</dd></div>{% endif %}
+        {% if page.finished_at %}<div><dt>完了</dt><dd>{{ page.finished_at | date: '%Y-%m-%d' }}</dd></div>{% endif %}
+        {% if page.last_read_at %}<div><dt>最終読書</dt><dd>{{ page.last_read_at | date: '%Y-%m-%d' }}</dd></div>{% endif %}
+      </dl>
+
+      {% if page.tags and page.tags != empty %}
+        <ul class="tags" aria-label="タグ">
+          {% for tag in page.tags %}<li>{{ tag }}</li>{% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="prose book-detail__body">
+    {{ content }}
+  </div>
+
+  {% if page.cover_source_url %}
+    <p class="cover-credit">表紙画像: <a href="{{ page.cover_source_url }}">提供元</a></p>
+  {% endif %}
+</article>

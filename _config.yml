@@ -1,0 +1,35 @@
+title: Reading Log
+description: 本・進捗・感想・アクションをつなぐ個人読書ログ
+lang: ja
+timezone: Asia/Tokyo
+url: https://n-yoshida-dev.github.io
+baseurl: /reading-log
+repository: n-yoshida-dev/reading-log
+markdown: kramdown
+permalink: pretty
+
+defaults:
+  - scope:
+      path: books
+    values:
+      layout: book
+      type: book
+  - scope:
+      path: reviews
+    values:
+      layout: default
+
+exclude:
+  - AGENTS.md
+  - AI_RULES.md
+  - CHATGPT_PROJECT_INSTRUCTIONS.md
+  - CLAUDE.md
+  - CONTRIBUTING.md
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - inbox
+  - templates
+  - vendor
+  - books/README.md
+  - assets/covers/README.md
