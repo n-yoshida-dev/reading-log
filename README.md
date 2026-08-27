@@ -1,1 +1,64 @@
-IyBSZWFkaW5nIExvZwoKQ2hhdEdQVOODu0NsYXVkZeODu0NsYXVkZSBDb2Rl44KS5qiq5pat44GX44Gm5L2/44GG44CB5YCL5Lq655So44Gu6Kqt5pu4566h55CG44Oq44Od44K444OI44Oq44Gn44GZ44CCCuacrOOBruabuOiqjOaDheWgseOAgemAsuaNl+OAgeiqreabuOODoeODouOAgeaEn+aDs+OAgeimgee0hOOAgeiqreS6huW+jOOBruOCouOCr+OCt+ODp+ODs+OCkk1hcmtkb3du44Gn566h55CG44GX44G+44GZ44CCCgotIOato+acrDog44GT44GuR2l0SHVi44Oq44Od44K444OI44OqCi0g5pel5bi444Gu5L2c5qWt5aC05omAOiBDaGF0R1BU44OX44Ot44K444Kn44Kv44OI44CM6Kqt5pu4566h55CG44CNCi0g5aSn6YeP55m76Yyy44O75qeL6YCg5aSJ5pu0OiBDbGF1ZGUgQ29kZQotIOWumuacn+ODrOODk+ODpeODvDogQ2hhdEdQVOOBrumAseasoeOCv+OCueOCrwotIOmWsuimp+eUu+mdojogW0dpdEh1YiBQYWdlc10oaHR0cHM6Ly9uLXlvc2hpZGEtZGV2LmdpdGh1Yi5pby9yZWFkaW5nLWxvZy8pCgojIyDpgYvnlKjjga7ljp/liYcKCjEuIDHlhorjgavjgaTjgY0gYGJvb2tzL2Ag5YaF44GuTWFya2Rvd27jgpIx44OV44Kh44Kk44Or5L2c5oiQ44GX44G+44GZ44CCCjIuIOabuOiqjOaDheWgseOCkuaOqOa4rOOBp+eiuuWumuOBm+OBmuOAgeS4jeaYjumgheebruOBr+epuuashOOBruOBvuOBvuaui+OBl+OBvuOBmeOAggozLiDjgZ3jga7loLTjgafmlbTnkIbjgafjgY3jgarjgYTlhaXlipvjgaDjgZHjgpIgYGluYm94L2Ag44Gr572u44GN44G+44GZ44CCCjQuIOiqreabuOODoeODouOBr+aXpeS7mOmghuOBq+i/veiomOOBl+OAgemBjuWOu+OBruacrOS6uuOBruiomOi/sOOCkuWLneaJi+OBq+imgee0hOODu+WJiumZpOOBl+OBvuOBm+OCk+OAggo1LiDlhazplovjg6rjg53jgrjjg4jjg6rjgarjga7jgafjgIHlgIvkurrmg4XloLHjgIHli6Tli5nlhYjjg7vmoYjku7bjga7mqZ/lr4bmg4XloLHjgIHmm7jnsY3mnKzmlofjga7plbfjgYTlvJXnlKjjga/oqJjpjLLjgZfjgb7jgZvjgpPjgIIKCkFJ44GM5pu05paw44GZ44KL6Zqb44Gu5q2j5byP44Gq44Or44O844Or44GvIFtBSV9SVUxFUy5tZF0oQUlfUlVMRVMubWQpIOOCkuWPgueFp+OBl+OBpuOBj+OBoOOBleOBhOOAggoKIyMg44OH44Kj44Os44Kv44OI44OqCgpgYGB0ZXh0CnJlYWRpbmctbG9nLwrilJzilIDilIAgYm9va3MvICAgICAgICAgICAgICAgICAgICAgICAjIDHlhorjgavjgaTjgY0x44OV44Kh44Kk44OrCuKUnOKUgOKUgCBpbmJveC8gICAgICAgICAgICAgICAgICAgICAgICMg5pyq5pW055CG44Gu5YWl5YqbCuKUnOKUgOKUgCByZXZpZXdzLyAgICAgICAgICAgICAgICAgICAgICMg6YCx5qyh44Os44OT44Ol44O8CuKUgiAgIOKUlOKUgOKUgCBsYXRlc3QubWQgICAgICAgICAgICAgICAgIyDmnIDmlrDjg6zjg5Pjg6Xjg7zjgbjjga7lm7rlrppVUkwK4pSc4pSA4pSAIHRlbXBsYXRlcy8gICAgICAgICAgICAgICAgICAgIyDmnKzjg7vpgLHmrKHjg6zjg5Pjg6Xjg7zjga7jg4bjg7Pjg5fjg6zjg7zjg4gK4pSc4pSA4pSAIGFzc2V0cy9jb3ZlcnMvICAgICAgICAgICAgICAgIyDkvb/nlKjoqLHlj6/jgpLnorroqo3jgZfjgZ/ooajntJnnlLvlg4/jga7jgb8K4pSc4pSA4pSAIEFJX1JVTEVTLm1kICAgICAgICAgICAgICAgICAgIyDlhahBSeWFsemAmuOBruato+W8j+ODq+ODvOODqwrilJzilIDilIAgQ0hBVEdQVF9QUk9KRUNUX0lOU1RSVUNUSU9OUy5tZArilJzilIDilIAgQUdFTlRTLm1kICAgICAgICAgICAgICAgICAgICAjIENvZGV45ZCR44GR5YWl5Y+jCuKUlOKUgOKUgCBDTEFVREUubWQgICAgICAgICAgICAgICAgICAgICMgQ2xhdWRlIENvZGXlkJHjgZHlhaXlj6MKYGBgCgojIyDjgrnjg4bjg7zjgr/jgrkKCi0gYHVucmVhZGA6IOacquiqreODu+epjeiqrQotIGByZWFkaW5nYDog6Kqt5pu45LitCi0gYHBhdXNlZGA6IOS4gOaZguWBnOatogotIGBmaW5pc2hlZGA6IOiqreS6hgotIGBza2ltbWVkYDog5b+F6KaB566H5omA44KS5ou+44GE6Kqt44G/44GX44Gm5a6M5LqGCi0gYGFiYW5kb25lZGA6IOiqreOCgOS+oeWApOOBjOiWhOOBhOOBqOWIpOaWreOBl+OBpuS4reatogoK5ZCM5pmC44GrIGByZWFkaW5nYCDjgavjgZnjgovmnKzjga/ljp/liYcy5YaK44G+44Gn44Gn44GZ44CC6Kqt44G/5YiH44KL44GT44Go6Ieq5L2T44KS55uu55qE44Gr44Gb44Ga44CBYHNraW1tZWRgIOOBqCBgYWJhbmRvbmVkYCDjgoLmraPluLjjgarlrozkuobliKTmlq3jgajjgZfjgabmibHjgYTjgb7jgZnjgIIKCiMjIGlQaG9uZeOBi+OCieOBruWFpeWKm+S+iwoKLSDjgIzjgZPjga7ooajntJnjgahJU0JO44Gu5pys44KS55m76Yyy44GX44Gm44CC6LK344Gj44Gf55CG55Sx44GvR2/jga7oqK3oqIjjgpLlrabjgbbjgZ/jgoHjgI0KLSDjgIzku4rml6Xjga84NeODmuODvOOCuOOBvuOBp+OAguesrDPnq6Djga7ogIPjgYjmlrnjgpJPcmdGbG9344Gr6Kmm44GX44Gf44GE44CNCi0g44CM6Kqt5LqG44CC5LuK6YCx5Lit44GrUkVBRE1F44Gu6Kit6KiI5Yik5pat44KS5pu444GN55u044GZ44CB44KS44Ki44Kv44K344On44Oz44Gr6L+95Yqg44GX44Gm44CNCi0g44CM56mN6Kqt44Go5LuK44GuOTDml6Xnm67mqJnjgpLopovjgabjgIHmrKHjgavoqq3jgoDmnKzjgpIx5YaK44Gr57We44Gj44Gm44CNCgpHaXRIdWLjgbjlj43mmKDjgZfjgZ/loLTlkIjjga/jgIFBSeOBi+OCieWkieabtOODleOCoeOCpOODq+OBqOWkieabtOWGheWuueOBruWgseWRiuOCkuWPl+OBkeWPluOCiuOBvuOBmeOAggoKIyMgR2l0SHViIFBhZ2Vz44Gu5pyJ5Yq55YyWCgrjg6rjg53jgrjjg4jjg6rjga4gYFNldHRpbmdzYCDihpIgYFBhZ2VzYCDihpIgYEJ1aWxkIGFuZCBkZXBsb3ltZW50YCDjgafjgIFTb3VyY2XjgpIgYERlcGxveSBmcm9tIGEgYnJhbmNoYOOAgUJyYW5jaOOCkiBgbWFpbmDjgIFGb2xkZXLjgpIgYC8ocm9vdClgIOOBq+ioreWumuOBl+OBvuOBmeOAguS7peW+jOOBr01hcmtkb3du44Gu5pu05paw44Gr6L+96ZqP44GX44Gm44K144Kk44OI44GM5YaN55Sf5oiQ44GV44KM44G+44GZ44CCCgojIyDlpJbpg6jjgYvjgonjga7lpInmm7TjgavjgaTjgYTjgaYKCuOBk+OCjOOBr+WAi+S6uuOBruiqreabuOiomOmMsuOBp+OBmeOAguWklumDqOOBi+OCieOBrklzc3Vl44CBUHVsbCBSZXF1ZXN044CB44Os44OT44Ol44O844Gv5Y+X44GR5LuY44GR44G+44Gb44KT44CC44Oq44Od44K444OI44Oq6Kit5a6a44GuIGBGZWF0dXJlc2Ag44GnIFB1bGwgcmVxdWVzdHPjg7tJc3N1ZXPjg7tEaXNjdXNzaW9uc+ODu1dpa2njgpLnhKHlirnljJbjgZfjgabpgYvnlKjjgZfjgb7jgZnjgIIK
+# Reading Log
+
+ChatGPT・Claude・Claude Codeを横断して使う、個人用の読書管理リポジトリです。
+本の書誌情報、進捗、読書メモ、感想、要約、読了後のアクションをMarkdownで管理します。
+
+- 正本: このGitHubリポジトリ
+- 日常の作業場所: ChatGPTプロジェクト「読書管理」
+- 大量登録・構造変更: Claude Code
+- 定期レビュー: ChatGPTの週次タスク
+- 閲覧画面: [GitHub Pages](https://n-yoshida-dev.github.io/reading-log/)
+
+## 運用の原則
+
+1. 1冊につき `books/` 内のMarkdownを1ファイル作成します。
+2. 書誌情報を推測で確定せず、不明項目は空欄のまま残します。
+3. その場で整理できない入力だけを `inbox/` に置きます。
+4. 読書メモは日付順に追記し、過去の本人の記述を勝手に要約・削除しません。
+5. 公開リポジトリなので、個人情報、勤務先・案件の機密情報、書籍本文の長い引用は記録しません。
+
+AIが更新する際の正式なルールは [AI_RULES.md](AI_RULES.md) を参照してください。
+
+## ディレクトリ
+
+```text
+reading-log/
+├── books/                       # 1冊につき1ファイル
+├── inbox/                       # 未整理の入力
+├── reviews/                     # 週次レビュー
+│   └── latest.md                # 最新レビューへの固定URL
+├── templates/                   # 本・週次レビューのテンプレート
+├── assets/covers/               # 使用許可を確認した表紙画像のみ
+├── AI_RULES.md                  # 全AI共通の正式ルール
+├── CHATGPT_PROJECT_INSTRUCTIONS.md
+├── AGENTS.md                    # Codex向け入口
+└── CLAUDE.md                    # Claude Code向け入口
+```
+
+## ステータス
+
+- `unread`: 未読・積読
+- `reading`: 読書中
+- `paused`: 一時停止
+- `finished`: 読了
+- `skimmed`: 必要箇所を拾い読みして完了
+- `abandoned`: 読む価値が薄いと判断して中止
+
+同時に `reading` にする本は原則2冊までです。読み切ること自体を目的にせず、`skimmed` と `abandoned` も正常な完了判断として扱います。
+
+## iPhoneからの入力例
+
+- 「この表紙とISBNの本を登録して。買った理由はGoの設計を学ぶため」
+- 「今日は85ページまで。第3章の考え方をOrgFlowに試したい」
+- 「読了。今週中にREADMEの設計判断を書き直す、をアクションに追加して」
+- 「積読と今の90日目標を見て、次に読む本を1冊に絞って」
+
+GitHubへ反映した場合は、AIから変更ファイルと変更内容の報告を受け取ります。
+
+## GitHub Pagesの有効化
+
+リポジトリの `Settings` → `Pages` → `Build and deployment` で、Sourceを `Deploy from a branch`、Branchを `main`、Folderを `/(root)` に設定します。以後はMarkdownの更新に追随してサイトが再生成されます。
+
+## 外部からの変更について
+
+これは個人の読書記録です。外部からのIssue、Pull Request、レビューは受け付けません。リポジトリ設定の `Features` で Pull requests・Issues・Discussions・Wikiを無効化して運用します。
