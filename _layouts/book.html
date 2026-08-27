@@ -14,20 +14,19 @@ layout: default
 
 <article class="book-detail">
   <header class="book-detail__header">
-    <div class="book-cover book-cover--large">
+    <div class="book-cover book-cover--large{% if page.cover_image %} book-cover--has-image{% endif %}">
       {% if page.cover_image %}
         {% assign cover_prefix = page.cover_image | slice: 0, 4 %}
         {% if cover_prefix == 'http' %}
-          <img src="{{ page.cover_image }}" alt="『{{ page.title | escape }}』の表紙">
+          <img src="{{ page.cover_image }}" alt="『{{ page.title | escape }}』の表紙" onerror="this.parentElement.classList.remove('book-cover--has-image'); this.remove();">
         {% else %}
-          <img src="{{ page.cover_image | relative_url }}" alt="『{{ page.title | escape }}』の表紙">
+          <img src="{{ page.cover_image | relative_url }}" alt="『{{ page.title | escape }}』の表紙" onerror="this.parentElement.classList.remove('book-cover--has-image'); this.remove();">
         {% endif %}
-      {% else %}
-        <div class="book-cover__placeholder">
-          <span>{{ page.title }}</span>
-          {% if page.author %}<small>{{ page.author }}</small>{% endif %}
-        </div>
       {% endif %}
+      <div class="book-cover__placeholder">
+        <span>{{ page.title }}</span>
+        {% if page.author %}<small>{{ page.author }}</small>{% endif %}
+      </div>
     </div>
 
     <div class="book-detail__summary">

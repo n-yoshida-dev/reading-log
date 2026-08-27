@@ -161,6 +161,7 @@ img { display: block; max-width: 100%; }
   box-shadow: 7px 9px 16px rgba(32, 39, 34, 0.18);
 }
 .book-cover img { width: 100%; height: 100%; object-fit: cover; }
+.book-cover--has-image .book-cover__placeholder { display: none; }
 .book-cover__placeholder {
   display: flex;
   min-height: 100%;

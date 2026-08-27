@@ -10,20 +10,19 @@
 
 <article class="book-card">
   <a class="book-card__cover-link" href="{{ book.url | relative_url }}" aria-label="『{{ book.title | escape }}』の記録を見る">
-    <div class="book-cover">
+    <div class="book-cover{% if book.cover_image %} book-cover--has-image{% endif %}">
       {% if book.cover_image %}
         {% assign cover_prefix = book.cover_image | slice: 0, 4 %}
         {% if cover_prefix == 'http' %}
-          <img src="{{ book.cover_image }}" alt="『{{ book.title | escape }}』の表紙" loading="lazy">
+          <img src="{{ book.cover_image }}" alt="『{{ book.title | escape }}』の表紙" loading="lazy" onerror="this.parentElement.classList.remove('book-cover--has-image'); this.remove();">
         {% else %}
-          <img src="{{ book.cover_image | relative_url }}" alt="『{{ book.title | escape }}』の表紙" loading="lazy">
+          <img src="{{ book.cover_image | relative_url }}" alt="『{{ book.title | escape }}』の表紙" loading="lazy" onerror="this.parentElement.classList.remove('book-cover--has-image'); this.remove();">
         {% endif %}
-      {% else %}
-        <div class="book-cover__placeholder">
-          <span>{{ book.title }}</span>
-          {% if book.author %}<small>{{ book.author }}</small>{% endif %}
-        </div>
       {% endif %}
+      <div class="book-cover__placeholder">
+        <span>{{ book.title }}</span>
+        {% if book.author %}<small>{{ book.author }}</small>{% endif %}
+      </div>
     </div>
   </a>
 
