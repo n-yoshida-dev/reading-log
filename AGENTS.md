@@ -1,3 +1,7 @@
-# Repository instructions
+# リポジトリ向け指示（Codex など AGENTS.md を読むエージェント用）
 
-Before reading or changing book data, read `AI_RULES.md` in full and follow it as the repository's canonical operating policy. Also read the relevant template and target files for the task. Preserve user-authored reflections and never invent bibliographic data, progress, or actions.
+本のデータを読む・変える前に `AI_RULES.md` を全文読み、このリポジトリの正式な運用ルールとして従うこと。
+あわせて、作業に関係するテンプレートと対象ファイルを読むこと。
+ユーザー本人が書いた感想・判断は保持し、書誌情報・進捗・アクションを推測で作らないこと。
+
+Claude Code 向けの補足は `CLAUDE.md` にある。

@@ -3,3 +3,7 @@ _site/
 .jekyll-metadata
 .sass-cache/
 vendor/
+
+# Claude Code のローカル設定（マシン固有・共有しない）
+.claude/settings.local.json
+CLAUDE.local.md
