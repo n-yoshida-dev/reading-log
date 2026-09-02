@@ -22,6 +22,7 @@ finished_at:
 last_read_at:
 purpose: ""
 tags: []
+user_rating:
 cover_image: ""
 cover_source_url: ""
 amazon_url: ""
