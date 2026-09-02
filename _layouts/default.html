@@ -17,7 +17,8 @@
     <link rel="icon" href="{{ '/assets/images/site-icon-32.png' | relative_url }}" sizes="32x32" type="image/png">
     <link rel="apple-touch-icon" href="{{ '/assets/images/site-icon-180.png' | relative_url }}">
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-    <script src="{{ '/assets/js/bookshelf.js' | relative_url }}" defer></script>
+    {% assign asset_version = site.github.build_revision | default: site.time %}
+    <script src="{{ '/assets/js/bookshelf.js' | relative_url }}?v={{ asset_version | uri_escape }}" defer></script>
   </head>
   <body>
     <header class="site-header">
