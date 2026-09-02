@@ -26,6 +26,7 @@
 
   const compareCards = (a, b, mode) => {
     if (mode === 'title') return compareTitle(a, b);
+    if (mode === 'user-rating') return Number(b.dataset.userRating) - Number(a.dataset.userRating) || compareTitle(a, b);
     if (mode === 'rating') return Number(b.dataset.rating) - Number(a.dataset.rating) || compareTitle(a, b);
     if (mode === 'rating-count') return Number(b.dataset.ratingCount) - Number(a.dataset.ratingCount) || compareTitle(a, b);
     if (mode === 'published-new') return b.dataset.published.localeCompare(a.dataset.published) || compareTitle(a, b);
