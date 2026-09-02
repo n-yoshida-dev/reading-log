@@ -17,6 +17,7 @@ finished_at:
 last_read_at:
 purpose: "早起きを習慣化するために、質の良い睡眠の取り方や最適な睡眠時間を知る。あわせて、睡眠に関する知識を体系的に知る。"
 tags: ["紙", "睡眠"]
+user_rating: 5
 cover_image: ""
 cover_source_url: ""
 amazon_url: ""
