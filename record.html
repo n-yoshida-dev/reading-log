@@ -1,0 +1,199 @@
+---
+layout: default
+title: 記録する
+description: 本の登録、読書中メモ、読了後の感想を迷わず入力するフォーム
+---
+{% assign books = site.pages | where: 'type', 'book' | sort: 'title' %}
+
+<section class="record-hero">
+  <p class="kicker">ADD / UPDATE</p>
+  <h1>何を書けばいいか、<br><span>思い出さなくていい。</span></h1>
+  <p>必要な質問に答えるだけで、reading-logへ反映するためのChatGPT用テキストを作ります。</p>
+</section>
+
+<section class="record-notice" aria-label="使い方">
+  <strong>使い方</strong>
+  <p>フォーム入力 → 「ChatGPT用テキストを生成」→ コピー → ChatGPTプロジェクト「読書管理」に貼り付けてください。入力途中の内容はこの端末に自動保存されます。</p>
+  <p>このリポジトリは公開です。勤務先・家族・健康・家計など、公開したくない個人情報は入力しないでください。</p>
+</section>
+
+<div class="record-layout">
+  <section class="record-card">
+    <div class="record-mode" role="radiogroup" aria-label="記録の種類">
+      <label><input type="radio" name="record-mode" value="new" checked><span>新しい本</span></label>
+      <label><input type="radio" name="record-mode" value="progress"><span>読書中メモ</span></label>
+      <label><input type="radio" name="record-mode" value="review"><span>読了・感想</span></label>
+    </div>
+
+    <form id="record-form" autocomplete="on">
+      <section class="record-fields" data-mode-panel="new">
+        <div class="record-section-heading">
+          <p class="kicker">NEW BOOK</p>
+          <h2>新しい本を登録</h2>
+          <p>書誌情報は全部埋めなくてOK。Amazon等の情報をそのまま貼っても使えます。</p>
+        </div>
+
+        <label class="field field--wide">
+          <span>本のタイトル <em>必須</em></span>
+          <input name="new_title" type="text" placeholder="例：ドメイン駆動設計入門">
+        </label>
+        <div class="field-row">
+          <label class="field">
+            <span>著者</span>
+            <input name="new_author" type="text" placeholder="分かれば入力">
+          </label>
+          <label class="field">
+            <span>ISBN</span>
+            <input name="new_isbn" type="text" inputmode="numeric" placeholder="ISBN-10 / ISBN-13">
+          </label>
+        </div>
+        <label class="field field--wide">
+          <span>書誌情報・Amazon情報</span>
+          <textarea name="new_bibliography" rows="5" placeholder="出版社、発売日、ページ数、Amazon URL、表紙画像URLなどをそのまま貼り付け"></textarea>
+        </label>
+        <div class="field-row">
+          <label class="field">
+            <span>カテゴリ</span>
+            <select name="new_category">
+              <option value="">AIに既存カテゴリから選ばせる</option>
+              <option>コミュニケーション</option>
+              <option>思考法・仕事術</option>
+              <option>子育て・教育</option>
+              <option>学習・読書</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>最初の状態</span>
+            <select name="new_status">
+              <option value="unread">積読</option>
+              <option value="reading">読み始める</option>
+            </select>
+          </label>
+        </div>
+        <label class="field field--wide">
+          <span>なぜこの本を買った／読もうと思った？</span>
+          <textarea name="new_reason" rows="3" placeholder="きっかけをラフに。1文でもOK"></textarea>
+        </label>
+        <label class="field field--wide">
+          <span>この本から何を得たい？</span>
+          <textarea name="new_purpose" rows="4" placeholder="例：設計判断の考え方を知りたい。実務で使える具体例が欲しい。"></textarea>
+          <small>「読み終える」ではなく、読んだ結果どうなりたいかを書くと後で評価しやすくなります。</small>
+        </label>
+      </section>
+
+      <section class="record-fields" data-mode-panel="progress" hidden>
+        <div class="record-section-heading">
+          <p class="kicker">READING NOTE</p>
+          <h2>読書中のメモ</h2>
+          <p>全部埋める必要はありません。残したい項目だけで十分です。</p>
+        </div>
+        <label class="field field--wide">
+          <span>本 <em>必須</em></span>
+          <select name="progress_book">
+            <option value="">選択してください</option>
+            {% for book in books %}<option value="{{ book.title | escape }}">{{ book.title }}</option>{% endfor %}
+          </select>
+        </label>
+        <div class="field-row">
+          <label class="field">
+            <span>日付</span>
+            <input name="progress_date" type="date" data-default-today>
+          </label>
+          <label class="field">
+            <span>どこまで読んだ？</span>
+            <input name="progress_amount" type="text" placeholder="例：85ページ / 40% / 3章まで">
+          </label>
+        </div>
+        <label class="field field--wide">
+          <span>気になったこと・覚えておきたいこと</span>
+          <textarea name="progress_note" rows="5" placeholder="印象に残った考え、疑問、納得できなかった点など"></textarea>
+        </label>
+        <label class="field field--wide">
+          <span>自分はどう考えた？</span>
+          <textarea name="progress_thought" rows="4" placeholder="本に書いてあったことではなく、自分の反応・判断・気づき"></textarea>
+        </label>
+        <label class="field field--wide">
+          <span>自分に試すなら？</span>
+          <textarea name="progress_apply" rows="3" placeholder="仕事・学習・生活で試したいこと。なければ空欄でOK"></textarea>
+        </label>
+      </section>
+
+      <section class="record-fields" data-mode-panel="review" hidden>
+        <div class="record-section-heading">
+          <p class="kicker">FINISH / REVIEW</p>
+          <h2>読了・感想</h2>
+          <p>感想を思い出すための質問です。短くても、辛口でも、そのままでOK。</p>
+        </div>
+        <label class="field field--wide">
+          <span>本 <em>必須</em></span>
+          <select name="review_book">
+            <option value="">選択してください</option>
+            {% for book in books %}<option value="{{ book.title | escape }}">{{ book.title }}</option>{% endfor %}
+          </select>
+        </label>
+        <div class="field-row">
+          <label class="field">
+            <span>読み方</span>
+            <select name="review_status">
+              <option value="finished">読了した</option>
+              <option value="skimmed">必要なところを拾い読みした</option>
+              <option value="abandoned">途中で読むのをやめた</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>評価</span>
+            <select name="review_rating">
+              <option value="">未評価</option>
+              <option value="1">★☆☆☆☆ 1</option>
+              <option value="2">★★☆☆☆ 2</option>
+              <option value="3">★★★☆☆ 3</option>
+              <option value="4">★★★★☆ 4</option>
+              <option value="5">★★★★★ 5</option>
+            </select>
+          </label>
+        </div>
+        <label class="field field--wide">
+          <span>最初の目的・期待に対して、どうだった？</span>
+          <textarea name="review_expectation" rows="4" placeholder="期待以上 / 期待通り / 期待外れ。その理由まで書ければ十分"></textarea>
+        </label>
+        <label class="field field--wide">
+          <span>良かった・刺さった・役立ちそうだった点</span>
+          <textarea name="review_good" rows="4" placeholder="特になければ「特になし」でOK"></textarea>
+        </label>
+        <label class="field field--wide">
+          <span>微妙だった・合わなかった・納得できなかった点</span>
+          <textarea name="review_bad" rows="4" placeholder="遠慮せずそのまま書く"></textarea>
+        </label>
+        <label class="field field--wide">
+          <span>読んで、自分の考えはどう変わった？</span>
+          <textarea name="review_thought" rows="4" placeholder="新しい気づき、逆に「変わらなかった」でもOK"></textarea>
+        </label>
+        <label class="field field--wide">
+          <span>自分の言葉で一言にすると？</span>
+          <textarea name="review_summary" rows="3" placeholder="この本は結局、自分にとって何だったか"></textarea>
+        </label>
+        <label class="field field--wide">
+          <span>実際にやることはある？</span>
+          <textarea name="review_action" rows="4" placeholder="1〜3個まで。なければ「特になし」でOK"></textarea>
+          <small>行動にしなくてよい本もあります。無理にアクションを作る必要はありません。</small>
+        </label>
+      </section>
+
+      <div class="record-actions">
+        <button class="button button--primary" type="submit">ChatGPT用テキストを生成</button>
+        <button class="button button--quiet" type="button" id="clear-record-form">入力をクリア</button>
+      </div>
+    </form>
+  </section>
+
+  <aside class="record-output" id="record-output-panel">
+    <p class="kicker">OUTPUT</p>
+    <h2>ChatGPTに渡す文章</h2>
+    <p>生成した文章をそのまま「読書管理」プロジェクトへ貼り付ければ、既存ルールに沿ってGitHubへ反映できます。</p>
+    <textarea id="record-output" rows="18" readonly placeholder="左のフォームに入力して生成してください"></textarea>
+    <button class="button button--copy" type="button" id="copy-record-output" disabled>コピーする</button>
+    <p class="copy-status" id="copy-status" role="status" aria-live="polite"></p>
+  </aside>
+</div>
+
+<script src="{{ '/assets/js/record.js' | relative_url }}" defer></script>

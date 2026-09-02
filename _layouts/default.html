@@ -17,6 +17,7 @@
     <link rel="icon" href="{{ '/assets/images/site-icon-32.png' | relative_url }}" sizes="32x32" type="image/png">
     <link rel="apple-touch-icon" href="{{ '/assets/images/site-icon-180.png' | relative_url }}">
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/record.css' | relative_url }}">
     {% assign asset_version = site.github.build_revision | default: site.time %}
     <script src="{{ '/assets/js/bookshelf.js' | relative_url }}?v={{ asset_version | uri_escape }}" defer></script>
   </head>
@@ -32,6 +33,7 @@
         </a>
         <nav class="nav" aria-label="メインナビゲーション">
           <a href="{{ '/' | relative_url }}">本棚</a>
+          <a href="{{ '/record/' | relative_url }}">記録する</a>
           <a href="{{ '/reviews/latest/' | relative_url }}">最新レビュー</a>
           <a href="https://github.com/{{ site.repository }}">GitHub</a>
         </nav>
