@@ -10,7 +10,7 @@ published_at: 2023-10-19
 page_count: 356
 status: unread
 progress: 0
-reading_order: 999
+reading_order: 8
 purchased_at:
 started_at:
 finished_at:

@@ -10,7 +10,7 @@ published_at: 2019-09-01
 page_count: 240
 status: unread
 progress: 0
-reading_order: 1
+reading_order: 6
 purchased_at:
 started_at:
 finished_at:
