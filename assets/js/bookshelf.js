@@ -12,6 +12,7 @@
   const search = document.querySelector('#book-search');
   const category = document.querySelector('#category-filter');
   const sort = document.querySelector('#book-sort');
+  const showFinished = document.querySelector('#show-finished');
   const count = document.querySelector('#book-result-count');
   const noResults = document.querySelector('#book-no-results');
   const cards = [...grid.querySelectorAll('[data-book-card]')];
@@ -47,7 +48,8 @@
       const searchable = normalize(`${card.dataset.title} ${card.dataset.author}`);
       const matchesSearch = !query || searchable.includes(query);
       const matchesCategory = selectedCategory === 'all' || card.dataset.category === selectedCategory;
-      card.hidden = !(matchesSearch && matchesCategory);
+      const matchesFinished = showFinished.checked || card.dataset.status !== 'finished';
+      card.hidden = !(matchesSearch && matchesCategory && matchesFinished);
       if (!card.hidden) visible += 1;
     });
 
@@ -58,5 +60,6 @@
   search.addEventListener('input', updateShelf);
   category.addEventListener('change', updateShelf);
   sort.addEventListener('change', updateShelf);
+  showFinished.addEventListener('change', updateShelf);
   updateShelf();
 })();

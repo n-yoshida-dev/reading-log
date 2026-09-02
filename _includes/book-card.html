@@ -11,6 +11,7 @@
 <article
   class="book-card"
   data-book-card
+  data-status="{{ book.status | escape }}"
   data-title="{{ book.title | escape }}"
   data-author="{{ book.author | escape }}"
   data-category="{{ book.category | escape }}"
@@ -18,6 +19,7 @@
   data-rating="{{ book.amazon_rating | default: 0 }}"
   data-rating-count="{{ book.amazon_rating_count | default: 0 }}"
   data-published="{% if book.published_at %}{{ book.published_at | date: '%Y-%m-%d' }}{% endif %}"
+  {% if include.hide_finished and book.status == 'finished' %}hidden{% endif %}
 >
   <a class="book-card__cover-link" href="{{ book.url | relative_url }}" aria-label="『{{ book.title | escape }}』の記録を見る">
     <div class="book-cover{% if book.cover_image %} book-cover--has-image{% endif %}">

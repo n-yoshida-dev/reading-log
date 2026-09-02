@@ -9,6 +9,7 @@ description: 読書中、次に読む本、読了後の行動を一覧する個�
 {% assign finished_books = books | where: 'status', 'finished' %}
 {% assign skimmed_books = books | where: 'status', 'skimmed' %}
 {% assign completed_count = finished_books.size | plus: skimmed_books.size %}
+{% assign default_visible_count = books.size | minus: finished_books.size %}
 
 <section class="hero">
   <div>
@@ -70,7 +71,7 @@ description: 読書中、次に読む本、読了後の行動を一覧する個�
   <section class="shelf-section">
     <header class="section-heading">
       <div><p class="kicker">ALL BOOKS</p><h2>すべての本</h2></div>
-      <p id="book-result-count" aria-live="polite">{{ books | size }}冊</p>
+      <p id="book-result-count" aria-live="polite">{{ default_visible_count }}冊</p>
     </header>
 
     <div class="shelf-controls" aria-label="本棚の検索と並べ替え">
@@ -100,11 +101,15 @@ description: 読書中、次に読む本、読了後の行動を一覧する個�
           <option value="published-old">刊行日が古い順</option>
         </select>
       </label>
+      <label class="control--toggle">
+        <input id="show-finished" type="checkbox">
+        <span>読了も表示</span>
+      </label>
     </div>
 
     <div class="book-grid" id="all-books-grid">
       {% assign sorted_books = books | sort: 'title' %}
-      {% for book in sorted_books %}{% include book-card.html book=book %}{% endfor %}
+      {% for book in sorted_books %}{% include book-card.html book=book hide_finished=true %}{% endfor %}
     </div>
     <p class="no-results" id="book-no-results" hidden>条件に一致する本はありません。</p>
   </section>
