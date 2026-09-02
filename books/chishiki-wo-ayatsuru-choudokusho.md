@@ -1,6 +1,7 @@
 ---
 title: "知識を操る超読書術"
 author: "メンタリストDaiGo"
+category: "学習・読書"
 isbn10: "4761274565"
 isbn13: "9784761274566"
 edition: ""
@@ -18,6 +19,10 @@ purpose: ""
 tags: []
 cover_image: "https://m.media-amazon.com/images/I/81hIMxeH4+L._SL1500_.jpg"
 cover_source_url: "https://www.amazon.co.jp/dp/4761274565"
+amazon_url: "https://www.amazon.co.jp/dp/4761274565"
+amazon_rating: 4.4
+amazon_rating_count: 1483
+amazon_rating_recorded_at: 2026-09-02
 ---
 
 ## 買った理由
@@ -36,4 +41,3 @@ cover_source_url: "https://www.amazon.co.jp/dp/4761274565"
 
 
 ## アクション
-

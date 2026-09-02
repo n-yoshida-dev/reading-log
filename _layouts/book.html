@@ -41,6 +41,7 @@ layout: default
       </div>
 
       <dl class="metadata">
+        {% if page.category %}<div><dt>カテゴリ</dt><dd>{{ page.category }}</dd></div>{% endif %}
         {% if page.isbn10 %}<div><dt>ISBN-10</dt><dd>{{ page.isbn10 }}</dd></div>{% endif %}
         {% if page.isbn13 %}<div><dt>ISBN-13</dt><dd>{{ page.isbn13 }}</dd></div>{% endif %}
         {% if page.publisher %}<div><dt>出版社</dt><dd>{{ page.publisher }}</dd></div>{% endif %}
@@ -49,7 +50,13 @@ layout: default
         {% if page.started_at %}<div><dt>開始</dt><dd>{{ page.started_at | date: '%Y-%m-%d' }}</dd></div>{% endif %}
         {% if page.finished_at %}<div><dt>完了</dt><dd>{{ page.finished_at | date: '%Y-%m-%d' }}</dd></div>{% endif %}
         {% if page.last_read_at %}<div><dt>最終読書</dt><dd>{{ page.last_read_at | date: '%Y-%m-%d' }}</dd></div>{% endif %}
+        {% if page.amazon_rating %}<div><dt>Amazon評価</dt><dd>★ {{ page.amazon_rating }} / 5（<span data-rating-count>{{ page.amazon_rating_count }}</span>件）</dd></div>{% endif %}
+        {% if page.amazon_rating_recorded_at %}<div><dt>Amazon評価取得日</dt><dd>{{ page.amazon_rating_recorded_at | date: '%Y-%m-%d' }}</dd></div>{% endif %}
       </dl>
+
+      {% if page.amazon_url %}
+        <a class="amazon-link" href="{{ page.amazon_url }}" target="_blank" rel="noopener noreferrer">Amazonで見る ↗</a>
+      {% endif %}
 
       {% if page.tags and page.tags != empty %}
         <ul class="tags" aria-label="タグ">

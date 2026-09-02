@@ -1,6 +1,7 @@
 ---
 title: "完全カラー図解 よくわかる発達心理学"
 author: "渡辺弥生（監修）"
+category: "子育て・教育"
 isbn10: "4816370579"
 isbn13: "9784816370571"
 edition: ""
@@ -18,6 +19,10 @@ purpose: ""
 tags: []
 cover_image: "https://m.media-amazon.com/images/I/81HAjkgAuzL._SL1500_.jpg"
 cover_source_url: "https://www.amazon.co.jp/dp/4816370579"
+amazon_url: "https://www.amazon.co.jp/dp/4816370579"
+amazon_rating: 4.4
+amazon_rating_count: 49
+amazon_rating_recorded_at: 2026-09-02
 ---
 
 ## 買った理由
@@ -36,4 +41,3 @@ cover_source_url: "https://www.amazon.co.jp/dp/4816370579"
 
 
 ## アクション
-

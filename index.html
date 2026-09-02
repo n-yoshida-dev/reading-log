@@ -70,11 +70,41 @@ description: 読書中、次に読む本、読了後の行動を一覧する個�
   <section class="shelf-section">
     <header class="section-heading">
       <div><p class="kicker">ALL BOOKS</p><h2>すべての本</h2></div>
-      <p>{{ books | size }}冊</p>
+      <p id="book-result-count" aria-live="polite">{{ books | size }}冊</p>
     </header>
-    <div class="book-grid">
+
+    <div class="shelf-controls" aria-label="本棚の検索と並べ替え">
+      <label class="control control--search">
+        <span>検索</span>
+        <input id="book-search" type="search" placeholder="タイトル・著者" autocomplete="off">
+      </label>
+      <label class="control">
+        <span>カテゴリ</span>
+        <select id="category-filter">
+          <option value="all">すべて</option>
+          <option value="コミュニケーション">コミュニケーション</option>
+          <option value="思考法・仕事術">思考法・仕事術</option>
+          <option value="子育て・教育">子育て・教育</option>
+          <option value="学習・読書">学習・読書</option>
+        </select>
+      </label>
+      <label class="control">
+        <span>並び順</span>
+        <select id="book-sort">
+          <option value="category">カテゴリ → タイトル</option>
+          <option value="title">タイトル</option>
+          <option value="rating">Amazon評価が高い順</option>
+          <option value="rating-count">Amazon評価数が多い順</option>
+          <option value="published-new">刊行日が新しい順</option>
+          <option value="published-old">刊行日が古い順</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="book-grid" id="all-books-grid">
       {% assign sorted_books = books | sort: 'title' %}
       {% for book in sorted_books %}{% include book-card.html book=book %}{% endfor %}
     </div>
+    <p class="no-results" id="book-no-results" hidden>条件に一致する本はありません。</p>
   </section>
 {% endif %}

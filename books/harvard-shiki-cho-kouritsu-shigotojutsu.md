@@ -1,6 +1,7 @@
 ---
 title: "ハーバード式「超」効率仕事術"
 author: "ロバート・C・ポーゼン（著）、関美和（訳）"
+category: "思考法・仕事術"
 isbn10: "4152093889"
 isbn13: "9784152093882"
 edition: ""
@@ -18,6 +19,10 @@ purpose: ""
 tags: []
 cover_image: "https://m.media-amazon.com/images/I/51CS6XE0ChL.jpg"
 cover_source_url: "https://www.amazon.co.jp/dp/4152093889"
+amazon_url: "https://www.amazon.co.jp/dp/4152093889"
+amazon_rating: 3.9
+amazon_rating_count: 43
+amazon_rating_recorded_at: 2026-09-02
 ---
 
 ## 買った理由
@@ -36,4 +41,3 @@ cover_source_url: "https://www.amazon.co.jp/dp/4152093889"
 
 
 ## アクション
-

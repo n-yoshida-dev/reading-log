@@ -9,6 +9,8 @@ ChatGPT・Claude・Claude Codeを横断して使う、個人用の読書管理�
 - 定期レビュー: ChatGPTの週次タスク
 - 閲覧画面: [GitHub Pages](https://n-yoshida-dev.github.io/reading-log/)
 
+本棚ではタイトル・著者検索、カテゴリ絞り込み、カテゴリ・Amazon評価・評価数・刊行日による並べ替えができます。Amazon評価は登録時点のスナップショットで、取得日と一緒に保存します。
+
 ## 運用の原則
 
 1. 1冊につき `books/` 内のMarkdownを1ファイル作成します。

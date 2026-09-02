@@ -1,6 +1,7 @@
 ---
 title: "子どもとの関係が変わる 自分の親に読んでほしかった本"
 author: "フィリッパ・ペリー（著）、高山真由美（訳）"
+category: "子育て・教育"
 isbn10: "429611767X"
 isbn13: "9784296117673"
 edition: ""
@@ -18,6 +19,10 @@ purpose: ""
 tags: []
 cover_image: "https://m.media-amazon.com/images/I/71iqPp9Y60L._SL1500_.jpg"
 cover_source_url: "https://www.amazon.co.jp/dp/429611767X"
+amazon_url: "https://www.amazon.co.jp/dp/429611767X"
+amazon_rating: 4.2
+amazon_rating_count: 790
+amazon_rating_recorded_at: 2026-09-02
 ---
 
 ## 買った理由
@@ -36,4 +41,3 @@ cover_source_url: "https://www.amazon.co.jp/dp/429611767X"
 
 
 ## アクション
-

@@ -135,7 +135,32 @@ img { display: block; max-width: 100%; }
 }
 .section-heading h2 { margin: 0; font-family: Georgia, "Yu Mincho", serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 500; }
 .section-heading > p { margin: 0; color: var(--muted); font-size: 0.82rem; }
+.shelf-controls {
+  display: grid;
+  grid-template-columns: minmax(240px, 1.4fr) minmax(180px, 0.8fr) minmax(220px, 1fr);
+  gap: 14px;
+  margin-bottom: 24px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--white) 82%, transparent);
+}
+.control { display: grid; gap: 6px; }
+.control > span { color: var(--muted); font-size: 0.7rem; font-weight: 750; }
+.control input, .control select {
+  width: 100%;
+  min-height: 44px;
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: var(--ink);
+  background: var(--white);
+  font: inherit;
+  font-size: 0.86rem;
+}
+.control input:focus, .control select:focus { outline: 2px solid var(--forest); outline-offset: 2px; }
 .book-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.book-card[hidden] { display: none; }
 
 .book-card {
   display: grid;
@@ -195,6 +220,19 @@ img { display: block; max-width: 100%; }
 .book-card h3 { margin: 14px 0 3px; font-family: Georgia, "Yu Mincho", serif; font-size: 1.28rem; line-height: 1.45; }
 .book-card h3 a { text-decoration: none; }
 .book-card__author { margin: 0; color: var(--muted); font-size: 0.78rem; }
+.book-card__meta { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; margin-top: 12px; }
+.category-chip {
+  display: inline-flex;
+  width: fit-content;
+  padding: 4px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--forest);
+  font-size: 0.68rem;
+  font-weight: 750;
+}
+.amazon-rating { color: #9a4a24; font-size: 0.72rem; font-weight: 800; text-decoration: none; }
+.amazon-rating span { color: var(--muted); font-weight: 650; }
 .book-card__purpose { display: -webkit-box; margin: 13px 0; overflow: hidden; color: var(--muted); font-size: 0.82rem; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
 
 .progress { margin-top: 24px; }
@@ -218,6 +256,19 @@ img { display: block; max-width: 100%; }
 .metadata dd { margin: 2px 0 0; font-size: 0.84rem; font-weight: 650; }
 .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 0; padding: 0; list-style: none; }
 .tags li { padding: 5px 10px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); font-size: 0.7rem; }
+.amazon-link {
+  display: inline-flex;
+  width: fit-content;
+  margin-top: 24px;
+  padding: 10px 15px;
+  border-radius: 999px;
+  color: var(--white);
+  background: var(--forest);
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+.amazon-link:hover { filter: brightness(1.08); }
 .book-detail__body { margin-top: 64px; padding-top: 46px; border-top: 1px solid var(--line); }
 .prose { max-width: 780px; }
 .prose h1, .prose h2, .prose h3 { font-family: Georgia, "Yu Mincho", serif; line-height: 1.4; }
@@ -229,6 +280,7 @@ img { display: block; max-width: 100%; }
 .prose pre { overflow-x: auto; padding: 18px; border-radius: 10px; background: var(--ink); color: var(--white); }
 .prose input[type="checkbox"] { margin-right: 0.45em; accent-color: var(--forest); }
 .cover-credit { margin-top: 42px; color: var(--muted); font-size: 0.7rem; }
+.no-results { margin: 36px 0 0; padding: 24px; border-radius: 14px; color: var(--muted); background: var(--white); text-align: center; }
 
 .site-footer { border-top: 1px solid var(--line); }
 .site-footer__inner { min-height: 120px; color: var(--muted); font-size: 0.78rem; }
@@ -239,6 +291,8 @@ img { display: block; max-width: 100%; }
   .review-panel { max-width: 560px; }
   .book-grid { grid-template-columns: 1fr; }
   .book-detail__header { grid-template-columns: 180px minmax(0, 1fr); gap: 34px; }
+  .shelf-controls { grid-template-columns: 1fr 1fr; }
+  .control--search { grid-column: 1 / -1; }
 }
 
 @media (max-width: 620px) {
@@ -257,6 +311,8 @@ img { display: block; max-width: 100%; }
   .empty-state { grid-template-columns: 1fr; gap: 16px; }
   .empty-state__number { font-size: 3.5rem; }
   .section-heading { align-items: start; flex-direction: column; gap: 6px; }
+  .shelf-controls { grid-template-columns: 1fr; padding: 14px; }
+  .control--search { grid-column: auto; }
   .book-card { grid-template-columns: 112px minmax(0, 1fr); gap: 16px; min-height: 215px; padding: 15px; }
   .book-cover { min-height: 185px; }
   .book-card__purpose { display: none; }
@@ -287,4 +343,5 @@ img { display: block; max-width: 100%; }
   .status--finished, .status--skimmed { color: #f3c0a8; background: #563525; }
   .status--paused { color: #ead78f; background: #4f4522; }
   .status--abandoned { color: #c5cac7; background: #3b403d; }
+  .amazon-rating { color: #f0a47c; }
 }

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">緑の背景に本の文字</title>
+  <rect width="512" height="512" rx="96" fill="#1e4f40"/>
+  <g fill="none" stroke="#fffdf7" stroke-width="42" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M256 80v360M100 180h312M230 210L100 390M282 210l130 180M175 355h162"/>
+  </g>
+</svg>

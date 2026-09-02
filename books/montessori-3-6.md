@@ -1,6 +1,7 @@
 ---
 title: "3～6歳までの実践版 モンテッソーリ教育で自信とやる気を伸ばす！ 写真とイラストでよくわかる！"
 author: "藤崎達宏"
+category: "子育て・教育"
 isbn10: "4837928153"
 isbn13: "9784837928157"
 edition: ""
@@ -18,6 +19,10 @@ purpose: ""
 tags: []
 cover_image: "https://m.media-amazon.com/images/I/81h8NuWBObL._SL1500_.jpg"
 cover_source_url: "https://www.amazon.co.jp/dp/4837928153"
+amazon_url: "https://www.amazon.co.jp/dp/4837928153"
+amazon_rating: 4.3
+amazon_rating_count: 350
+amazon_rating_recorded_at: 2026-09-02
 ---
 
 ## 買った理由
@@ -36,4 +41,3 @@ cover_source_url: "https://www.amazon.co.jp/dp/4837928153"
 
 
 ## アクション
-

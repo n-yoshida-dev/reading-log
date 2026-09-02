@@ -1,6 +1,7 @@
 ---
 title: "0～3歳までの実践版 モンテッソーリ教育で才能をぐんぐん伸ばす！"
 author: "藤崎達宏"
+category: "子育て・教育"
 isbn10: "4837927521"
 isbn13: "9784837927525"
 edition: ""
@@ -18,6 +19,10 @@ purpose: ""
 tags: []
 cover_image: "https://m.media-amazon.com/images/I/614ARMGS0lL._SL1006_.jpg"
 cover_source_url: "https://www.amazon.co.jp/dp/4837927521"
+amazon_url: "https://www.amazon.co.jp/dp/4837927521"
+amazon_rating: 4.3
+amazon_rating_count: 1041
+amazon_rating_recorded_at: 2026-09-02
 ---
 
 ## 買った理由
@@ -36,4 +41,3 @@ cover_source_url: "https://www.amazon.co.jp/dp/4837927521"
 
 
 ## アクション
-

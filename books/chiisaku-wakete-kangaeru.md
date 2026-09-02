@@ -1,6 +1,7 @@
 ---
 title: "小さく分けて考える 「悩む時間」と「無駄な頑張り」を80％減らす分解思考"
 author: "菅原健一"
+category: "思考法・仕事術"
 isbn10: "4815616477"
 isbn13: "9784815616472"
 edition: ""
@@ -18,6 +19,10 @@ purpose: ""
 tags: []
 cover_image: "https://m.media-amazon.com/images/I/71KwvVG37NL._SL1481_.jpg"
 cover_source_url: "https://www.amazon.co.jp/dp/4815616477"
+amazon_url: "https://www.amazon.co.jp/dp/4815616477"
+amazon_rating: 4.1
+amazon_rating_count: 531
+amazon_rating_recorded_at: 2026-09-02
 ---
 
 ## 買った理由
@@ -36,4 +41,3 @@ cover_source_url: "https://www.amazon.co.jp/dp/4815616477"
 
 
 ## アクション
-

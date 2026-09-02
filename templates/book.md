@@ -6,6 +6,7 @@
 ---
 title: ""
 author: ""
+category: ""
 isbn10: ""
 isbn13: ""
 edition: ""
@@ -23,6 +24,10 @@ purpose: ""
 tags: []
 cover_image: ""
 cover_source_url: ""
+amazon_url: ""
+amazon_rating:
+amazon_rating_count:
+amazon_rating_recorded_at:
 ---
 
 ## 買った理由
