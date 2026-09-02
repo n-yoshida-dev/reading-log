@@ -42,6 +42,7 @@ layout: default
 
       <dl class="metadata">
         {% if page.category %}<div><dt>カテゴリ</dt><dd>{{ page.category }}</dd></div>{% endif %}
+        {% if page.user_rating %}<div><dt>自分の評価</dt><dd>★ {{ page.user_rating }} / 5</dd></div>{% endif %}
         {% if page.isbn10 %}<div><dt>ISBN-10</dt><dd>{{ page.isbn10 }}</dd></div>{% endif %}
         {% if page.isbn13 %}<div><dt>ISBN-13</dt><dd>{{ page.isbn13 }}</dd></div>{% endif %}
         {% if page.publisher %}<div><dt>出版社</dt><dd>{{ page.publisher }}</dd></div>{% endif %}
