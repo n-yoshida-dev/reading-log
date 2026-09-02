@@ -14,6 +14,7 @@
   data-title="{{ book.title | escape }}"
   data-author="{{ book.author | escape }}"
   data-category="{{ book.category | escape }}"
+  data-user-rating="{{ book.user_rating | default: 0 }}"
   data-rating="{{ book.amazon_rating | default: 0 }}"
   data-rating-count="{{ book.amazon_rating_count | default: 0 }}"
   data-published="{% if book.published_at %}{{ book.published_at | date: '%Y-%m-%d' }}{% endif %}"
@@ -44,8 +45,9 @@
     {% if book.author %}<p class="book-card__author">{{ book.author }}</p>{% endif %}
     <div class="book-card__meta">
       {% if book.category %}<span class="category-chip">{{ book.category }}</span>{% endif %}
+      {% if book.user_rating %}<span class="user-rating" aria-label="自分の評価 {{ book.user_rating }} / 5">自分 ★ {{ book.user_rating }}</span>{% endif %}
       {% if book.amazon_rating and book.amazon_url %}
-        <a class="amazon-rating" href="{{ book.amazon_url }}" target="_blank" rel="noopener noreferrer" aria-label="Amazon評価 {{ book.amazon_rating }}、評価数 {{ book.amazon_rating_count }}件。Amazonで見る">★ {{ book.amazon_rating }} <span>（<span data-rating-count-display>{{ book.amazon_rating_count }}</span>件）</span></a>
+        <a class="amazon-rating" href="{{ book.amazon_url }}" target="_blank" rel="noopener noreferrer" aria-label="Amazon評価 {{ book.amazon_rating }}、評価数 {{ book.amazon_rating_count }}件。Amazonで見る">Amazon ★ {{ book.amazon_rating }} <span>（<span data-rating-count-display>{{ book.amazon_rating_count }}</span>件）</span></a>
       {% endif %}
     </div>
     {% if book.purpose %}<p class="book-card__purpose">{{ book.purpose }}</p>{% endif %}
