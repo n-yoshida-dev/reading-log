@@ -17,6 +17,7 @@ finished_at:
 last_read_at:
 purpose: ""
 tags: ["Audible", "小説", "歴史"]
+user_rating: 4
 cover_image: ""
 cover_source_url: ""
 amazon_url: ""
