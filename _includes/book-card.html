@@ -45,7 +45,7 @@
     <div class="book-card__meta">
       {% if book.category %}<span class="category-chip">{{ book.category }}</span>{% endif %}
       {% if book.amazon_rating and book.amazon_url %}
-        <a class="amazon-rating" href="{{ book.amazon_url }}" target="_blank" rel="noopener noreferrer" aria-label="Amazon評価 {{ book.amazon_rating }}、評価数 {{ book.amazon_rating_count }}件。Amazonで見る">★ {{ book.amazon_rating }} <span>（<span data-rating-count>{{ book.amazon_rating_count }}</span>件）</span></a>
+        <a class="amazon-rating" href="{{ book.amazon_url }}" target="_blank" rel="noopener noreferrer" aria-label="Amazon評価 {{ book.amazon_rating }}、評価数 {{ book.amazon_rating_count }}件。Amazonで見る">★ {{ book.amazon_rating }} <span>（<span data-rating-count-display>{{ book.amazon_rating_count }}</span>件）</span></a>
       {% endif %}
     </div>
     {% if book.purpose %}<p class="book-card__purpose">{{ book.purpose }}</p>{% endif %}

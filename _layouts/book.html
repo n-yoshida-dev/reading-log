@@ -50,7 +50,7 @@ layout: default
         {% if page.started_at %}<div><dt>開始</dt><dd>{{ page.started_at | date: '%Y-%m-%d' }}</dd></div>{% endif %}
         {% if page.finished_at %}<div><dt>完了</dt><dd>{{ page.finished_at | date: '%Y-%m-%d' }}</dd></div>{% endif %}
         {% if page.last_read_at %}<div><dt>最終読書</dt><dd>{{ page.last_read_at | date: '%Y-%m-%d' }}</dd></div>{% endif %}
-        {% if page.amazon_rating %}<div><dt>Amazon評価</dt><dd>★ {{ page.amazon_rating }} / 5（<span data-rating-count>{{ page.amazon_rating_count }}</span>件）</dd></div>{% endif %}
+        {% if page.amazon_rating %}<div><dt>Amazon評価</dt><dd>★ {{ page.amazon_rating }} / 5（<span data-rating-count-display>{{ page.amazon_rating_count }}</span>件）</dd></div>{% endif %}
         {% if page.amazon_rating_recorded_at %}<div><dt>Amazon評価取得日</dt><dd>{{ page.amazon_rating_recorded_at | date: '%Y-%m-%d' }}</dd></div>{% endif %}
       </dl>
 

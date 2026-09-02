@@ -58,10 +58,10 @@ description: 読書中、次に読む本、読了後の行動を一覧する個�
   <section class="shelf-section">
     <header class="section-heading">
       <div><p class="kicker">READING QUEUE</p><h2>次に読む</h2></div>
-      <p>reading_order の小さい順</p>
+      <p>優先順位の高い3冊まで</p>
     </header>
     <div class="book-grid">
-      {% for book in unread_books %}{% include book-card.html book=book %}{% endfor %}
+      {% for book in unread_books limit: 3 %}{% include book-card.html book=book %}{% endfor %}
     </div>
   </section>
 {% endif %}

@@ -1,6 +1,9 @@
 (() => {
-  document.querySelectorAll('[data-rating-count]').forEach((element) => {
-    element.textContent = Number(element.textContent).toLocaleString('ja-JP');
+  document.querySelectorAll('[data-rating-count-display]').forEach((element) => {
+    const ratingCount = Number(element.textContent.replaceAll(',', ''));
+    if (Number.isFinite(ratingCount)) {
+      element.textContent = ratingCount.toLocaleString('ja-JP');
+    }
   });
 
   const grid = document.querySelector('#all-books-grid');
