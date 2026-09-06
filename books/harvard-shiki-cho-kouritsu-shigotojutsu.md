@@ -10,7 +10,7 @@ published_at: 2013-07-10
 page_count: 341
 status: unread
 progress: 0
-reading_order: 999
+reading_order: 15
 purchased_at:
 started_at:
 finished_at:

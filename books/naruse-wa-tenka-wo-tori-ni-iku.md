@@ -10,7 +10,7 @@ published_at: 2023-03-17
 page_count: 208
 status: finished
 progress: 100
-reading_order: 999
+reading_order: 40
 purchased_at:
 started_at:
 finished_at:

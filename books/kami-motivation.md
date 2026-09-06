@@ -10,7 +10,7 @@ published_at: 2021-12-17
 page_count: 288
 status: finished
 progress: 100
-reading_order: 999
+reading_order: 38
 purchased_at:
 started_at:
 finished_at:

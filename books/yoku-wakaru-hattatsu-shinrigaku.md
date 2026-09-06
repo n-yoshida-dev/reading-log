@@ -10,7 +10,7 @@ published_at: 2021-09-16
 page_count: 240
 status: unread
 progress: 0
-reading_order: 999
+reading_order: 32
 purchased_at:
 started_at:
 finished_at:

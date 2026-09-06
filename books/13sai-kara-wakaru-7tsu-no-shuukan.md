@@ -10,7 +10,7 @@ published_at: 2020-06-25
 page_count: 136
 status: unread
 progress: 0
-reading_order: 999
+reading_order: 9
 purchased_at:
 started_at:
 finished_at:

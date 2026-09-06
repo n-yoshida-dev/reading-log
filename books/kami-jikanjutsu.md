@@ -10,7 +10,7 @@ published_at: 2017-04-13
 page_count: 280
 status: unread
 progress: 0
-reading_order: 999
+reading_order: 18
 purchased_at:
 started_at:
 finished_at:

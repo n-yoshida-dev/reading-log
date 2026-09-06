@@ -10,7 +10,7 @@ published_at: 2020-11-25
 page_count: 288
 status: unread
 progress: 0
-reading_order: 999
+reading_order: 22
 purchased_at:
 started_at:
 finished_at:

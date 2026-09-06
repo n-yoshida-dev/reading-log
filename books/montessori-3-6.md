@@ -10,7 +10,7 @@ published_at: 2020-03-21
 page_count: 261
 status: unread
 progress: 0
-reading_order: 999
+reading_order: 25
 purchased_at:
 started_at:
 finished_at:

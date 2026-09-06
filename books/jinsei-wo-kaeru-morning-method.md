@@ -10,7 +10,7 @@ published_at: 2017-02-22
 page_count: 231
 status: finished
 progress: 100
-reading_order: 999
+reading_order: 37
 purchased_at:
 started_at:
 finished_at:

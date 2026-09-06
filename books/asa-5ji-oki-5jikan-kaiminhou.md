@@ -10,7 +10,7 @@ published_at: 2016-12-09
 page_count: 192
 status: unread
 progress: 0
-reading_order: 999
+reading_order: 10
 purchased_at:
 started_at:
 finished_at:
