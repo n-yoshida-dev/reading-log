@@ -12,7 +12,7 @@ description: 本の登録、読書中メモ、読了後の感想を迷わず入�
 
 <section class="record-notice" aria-label="使い方">
   <strong>使い方</strong>
-  <p>フォーム入力 → テキスト生成 → 「コピーしてChatGPTを開く」→ プロジェクト「読書管理」に貼り付けてください。初回だけ、このページ下部でプロジェクトのURLを設定します。入力途中の内容はこの端末に自動保存されます。</p>
+  <p>フォーム入力 → テキスト生成 → 「コピーしてChatGPTを開く」→ プロジェクト「読書管理」に貼り付けてください。初回だけ、このページ下部でプロジェクトのURLを設定します。フォームを開くたび、入力欄は空の状態から始まります。</p>
   <p>このリポジトリは公開です。勤務先・家族・健康・家計など、公開したくない個人情報は入力しないでください。</p>
 </section>
 
@@ -24,7 +24,7 @@ description: 本の登録、読書中メモ、読了後の感想を迷わず入�
       <label><input type="radio" name="record-mode" value="review"><span>読了・感想</span></label>
     </div>
 
-    <form id="record-form" autocomplete="on">
+    <form id="record-form" autocomplete="off">
       <section class="record-fields" data-mode-panel="new">
         <div class="record-section-heading">
           <p class="kicker">NEW BOOK</p>

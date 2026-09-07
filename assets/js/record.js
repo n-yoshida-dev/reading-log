@@ -14,7 +14,7 @@
   const chatgptUrlSave = document.querySelector('#save-chatgpt-project-url');
   const chatgptUrlClear = document.querySelector('#clear-chatgpt-project-url');
   const chatgptUrlStatus = document.querySelector('#chatgpt-setting-status');
-  const storageKey = 'reading-log-record-form-v1';
+  const legacyStorageKey = 'reading-log-record-form-v1';
   const chatgptUrlStorageKey = 'reading-log-chatgpt-project-url-v1';
 
   const text = (name) => (form.elements[name]?.value || '').trim();
@@ -84,7 +84,7 @@
       active.scrollIntoView({ block: 'nearest' });
     }
 
-    function selectOption(option, { close = true, persist = true } = {}) {
+    function selectOption(option, { close = true } = {}) {
       value.value = option?.dataset.title || '';
       search.value = value.value;
       clear.hidden = !value.value;
@@ -92,7 +92,6 @@
         candidate.setAttribute('aria-selected', String(candidate === option));
       });
       if (close) setExpanded(false);
-      if (persist) saveDraft();
     }
 
     function filterOptions() {
@@ -126,7 +125,6 @@
       clear.hidden = !search.value;
       options.forEach((option) => option.setAttribute('aria-selected', 'false'));
       filterOptions();
-      saveDraft();
     });
     search.addEventListener('keydown', (event) => {
       if (event.key === 'ArrowDown') {
@@ -147,7 +145,7 @@
     search.addEventListener('blur', () => {
       window.setTimeout(() => {
         const exact = options.find((option) => option.dataset.title === search.value.trim());
-        if (!value.value && exact) selectOption(exact, { persist: true });
+        if (!value.value && exact) selectOption(exact);
         setExpanded(false);
       }, 120);
     });
@@ -166,7 +164,7 @@
 
     picker.syncFromValue = () => {
       const selected = options.find((option) => option.dataset.title === value.value);
-      selectOption(selected || null, { persist: false });
+      selectOption(selected || null);
     };
   }
 
@@ -174,49 +172,21 @@
     document.querySelectorAll('[data-book-picker]').forEach((picker) => picker.syncFromValue?.());
   }
 
-  function serializeForm() {
-    const values = {};
-    [...form.elements].forEach((element) => {
-      if (!element.name || element.name === 'record-mode') return;
-      if (['button', 'submit'].includes(element.type)) return;
-      values[element.name] = element.value;
-    });
-    return { mode: currentMode(), values };
+  function clearLegacyDraft() {
+    try { localStorage.removeItem(legacyStorageKey); } catch (_) {}
   }
 
-  function saveDraft() {
-    try {
-      localStorage.setItem(storageKey, JSON.stringify(serializeForm()));
-    } catch (_) {
-      // localStorageが使えない環境では自動保存をスキップする。
-    }
-  }
-
-  function loadDraft() {
-    let draft;
-    try {
-      draft = JSON.parse(localStorage.getItem(storageKey));
-    } catch (_) {
-      draft = null;
-    }
-
-    if (draft?.mode) {
-      const target = modeInputs.find((input) => input.value === draft.mode);
-      if (target) target.checked = true;
-    }
-
-    if (draft?.values) {
-      Object.entries(draft.values).forEach(([name, value]) => {
-        const element = form.elements[name];
-        if (element && typeof value === 'string') element.value = value;
-      });
-    }
-
+  function resetRecordForm() {
+    form.reset();
+    modeInputs[0].checked = true;
     document.querySelectorAll('[data-default-today]').forEach((input) => {
-      if (!input.value) input.value = todayInLocalTime();
+      input.value = todayInLocalTime();
     });
-
-    showMode(currentMode());
+    showMode('new');
+    output.value = '';
+    copyButton.disabled = true;
+    copyOpenButton.disabled = true;
+    copyStatus.textContent = '';
     syncBookPickersFromValues();
   }
 
@@ -277,13 +247,10 @@
   modeInputs.forEach((input) => {
     input.addEventListener('change', () => {
       showMode(input.value);
-      saveDraft();
       copyStatus.textContent = '';
     });
   });
 
-  form.addEventListener('input', saveDraft);
-  form.addEventListener('change', saveDraft);
 
   form.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -386,21 +353,15 @@
 
   clearButton.addEventListener('click', () => {
     if (!window.confirm('入力中の内容をすべて消しますか？')) return;
-    form.reset();
-    modeInputs[0].checked = true;
-    document.querySelectorAll('[data-default-today]').forEach((input) => {
-      input.value = todayInLocalTime();
-    });
-    showMode('new');
-    output.value = '';
-    copyButton.disabled = true;
-    copyOpenButton.disabled = true;
-    copyStatus.textContent = '';
-    try { localStorage.removeItem(storageKey); } catch (_) {}
-    syncBookPickersFromValues();
+    resetRecordForm();
+  });
+
+  window.addEventListener('pageshow', (event) => {
+    if (event.persisted) resetRecordForm();
   });
 
   document.querySelectorAll('[data-book-picker]').forEach(initBookPicker);
-  loadDraft();
+  clearLegacyDraft();
+  resetRecordForm();
   showChatgptUrlState();
 })();
