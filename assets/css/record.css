@@ -129,12 +129,14 @@
   gap: 14px;
 }
 .field { display: grid; gap: 7px; }
-.field > span {
+.field > span,
+.field__label {
   color: var(--ink);
   font-size: 0.78rem;
   font-weight: 750;
 }
-.field > span em {
+.field > span em,
+.field__label em {
   margin-left: 5px;
   color: var(--orange);
   font-size: 0.65rem;
@@ -161,6 +163,109 @@
   outline-offset: 2px;
 }
 .field small { color: var(--muted); font-size: 0.7rem; line-height: 1.55; }
+
+.book-picker { position: relative; }
+.book-picker input[type="hidden"] { display: none; }
+.book-picker__control { position: relative; }
+.book-picker__search { padding-right: 42px !important; }
+.book-picker__clear {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  transform: translateY(-50%);
+  border: 0;
+  border-radius: 50%;
+  color: var(--muted);
+  background: transparent;
+  font: inherit;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.book-picker__clear:hover { background: var(--line); }
+.book-picker__menu {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 6px);
+  right: 0;
+  left: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--white);
+  box-shadow: 0 14px 34px rgba(26, 35, 30, 0.16);
+}
+.book-picker__options {
+  max-height: min(360px, 48vh);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 6px;
+}
+.book-picker__option {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 11px 10px;
+  border: 0;
+  border-radius: 8px;
+  color: var(--ink);
+  background: transparent;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.book-picker__option:hover,
+.book-picker__option.is-active { background: var(--paper); }
+.book-picker__option[aria-selected="true"] { background: color-mix(in srgb, var(--forest) 10%, var(--white)); }
+.book-picker__option-main {
+  display: grid;
+  min-width: 0;
+  gap: 3px;
+}
+.book-picker__option-main strong {
+  overflow: hidden;
+  font-size: 0.8rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.book-picker__option-main small {
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 0.66rem;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.book-picker__badge {
+  flex: none;
+  padding: 4px 7px;
+  border-radius: 999px;
+  color: var(--muted);
+  background: var(--paper);
+  font-size: 0.62rem;
+  font-weight: 750;
+}
+.book-picker__badge[data-status="reading"] { color: var(--white); background: var(--forest); }
+.book-picker__badge[data-status="paused"] { color: #6d4b17; background: #f5e7c8; }
+.book-picker__empty {
+  margin: 0;
+  padding: 18px;
+  color: var(--muted);
+  font-size: 0.76rem;
+  text-align: center;
+}
+.book-picker__result {
+  display: block;
+  margin-top: 6px;
+}
+.book-picker__menu[hidden],
+.book-picker__option[hidden],
+.book-picker__empty[hidden],
+.book-picker__clear[hidden] { display: none; }
 
 .record-actions {
   display: flex;
@@ -189,13 +294,77 @@
   color: var(--muted);
   background: transparent;
 }
-.button--copy { width: 100%; margin-top: 12px; }
+.record-output__actions {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+}
+.button--copy { width: 100%; }
+.button--copy-only { width: 100%; }
 .button:disabled { cursor: not-allowed; opacity: 0.45; }
 .copy-status {
   min-height: 1.4em;
   margin: 9px 0 0;
   color: var(--forest);
   font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.chatgpt-setting {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+.chatgpt-setting summary {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 750;
+  cursor: pointer;
+}
+.chatgpt-setting > p {
+  margin: 9px 0 12px;
+  color: var(--muted);
+  font-size: 0.68rem;
+  line-height: 1.55;
+}
+.chatgpt-setting__field {
+  display: grid;
+  gap: 6px;
+}
+.chatgpt-setting__field span {
+  color: var(--ink);
+  font-size: 0.7rem;
+  font-weight: 750;
+}
+.chatgpt-setting__field input {
+  width: 100%;
+  min-height: 42px;
+  padding: 9px 11px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: var(--ink);
+  background: var(--paper);
+  font: inherit;
+  font-size: 0.72rem;
+}
+.chatgpt-setting__field input:focus {
+  outline: 2px solid var(--forest);
+  outline-offset: 2px;
+}
+.chatgpt-setting__actions {
+  display: flex;
+  gap: 7px;
+  margin-top: 9px;
+}
+.chatgpt-setting__actions .button {
+  min-height: 36px;
+  padding: 7px 12px;
+  font-size: 0.7rem;
+}
+.chatgpt-setting__status {
+  min-height: 1.2em;
+  margin-bottom: 0 !important;
+  color: var(--forest) !important;
   font-weight: 700;
 }
 

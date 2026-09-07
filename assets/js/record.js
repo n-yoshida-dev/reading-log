@@ -6,9 +6,16 @@
   const panels = [...document.querySelectorAll('[data-mode-panel]')];
   const output = document.querySelector('#record-output');
   const copyButton = document.querySelector('#copy-record-output');
+  const copyOpenButton = document.querySelector('#copy-open-record-output');
   const copyStatus = document.querySelector('#copy-status');
   const clearButton = document.querySelector('#clear-record-form');
+  const chatgptSetting = document.querySelector('#chatgpt-setting');
+  const chatgptUrlInput = document.querySelector('#chatgpt-project-url');
+  const chatgptUrlSave = document.querySelector('#save-chatgpt-project-url');
+  const chatgptUrlClear = document.querySelector('#clear-chatgpt-project-url');
+  const chatgptUrlStatus = document.querySelector('#chatgpt-setting-status');
   const storageKey = 'reading-log-record-form-v1';
+  const chatgptUrlStorageKey = 'reading-log-chatgpt-project-url-v1';
 
   const text = (name) => (form.elements[name]?.value || '').trim();
   const line = (label, value) => value ? `- ${label}: ${value}` : '';
@@ -30,6 +37,141 @@
     panels.forEach((panel) => {
       panel.hidden = panel.dataset.modePanel !== mode;
     });
+  }
+
+  function normalizeSearch(value) {
+    return String(value || '').normalize('NFKC').toLocaleLowerCase('ja');
+  }
+
+  function initBookPicker(picker) {
+    const search = picker.querySelector('[data-book-search]');
+    const value = picker.querySelector('[data-book-value]');
+    const menu = picker.querySelector('[data-book-menu]');
+    const optionContainer = picker.querySelector('[data-book-options]');
+    const empty = picker.querySelector('[data-book-empty]');
+    const result = picker.querySelector('[data-book-result]');
+    const clear = picker.querySelector('[data-book-clear]');
+    const statusOrder = { reading: 0, unread: 1, paused: 2, finished: 3, skimmed: 4, abandoned: 5 };
+    const options = [...picker.querySelectorAll('[data-book-option]')].sort((a, b) => {
+      const statusDifference = (statusOrder[a.dataset.status] ?? 9) - (statusOrder[b.dataset.status] ?? 9);
+      if (statusDifference) return statusDifference;
+      const orderDifference = Number(a.dataset.readingOrder || 9999) - Number(b.dataset.readingOrder || 9999);
+      return orderDifference || a.dataset.title.localeCompare(b.dataset.title, 'ja');
+    });
+    let visibleOptions = options;
+    let activeIndex = -1;
+
+    options.forEach((option) => optionContainer.appendChild(option));
+
+    function setExpanded(expanded) {
+      menu.hidden = !expanded;
+      search.setAttribute('aria-expanded', String(expanded));
+      if (!expanded) {
+        search.removeAttribute('aria-activedescendant');
+        options.forEach((option) => option.classList.remove('is-active'));
+        activeIndex = -1;
+      }
+    }
+
+    function setActive(index) {
+      if (!visibleOptions.length) return;
+      activeIndex = (index + visibleOptions.length) % visibleOptions.length;
+      visibleOptions.forEach((option, optionIndex) => {
+        option.classList.toggle('is-active', optionIndex === activeIndex);
+      });
+      const active = visibleOptions[activeIndex];
+      search.setAttribute('aria-activedescendant', active.id);
+      active.scrollIntoView({ block: 'nearest' });
+    }
+
+    function selectOption(option, { close = true, persist = true } = {}) {
+      value.value = option?.dataset.title || '';
+      search.value = value.value;
+      clear.hidden = !value.value;
+      options.forEach((candidate) => {
+        candidate.setAttribute('aria-selected', String(candidate === option));
+      });
+      if (close) setExpanded(false);
+      if (persist) saveDraft();
+    }
+
+    function filterOptions() {
+      const query = normalizeSearch(search.value).trim();
+      const tokens = query.split(/\s+/).filter(Boolean);
+      visibleOptions = options.filter((option) => {
+        const haystack = normalizeSearch(option.dataset.search);
+        const compactHaystack = haystack.replace(/[\s\-‐‑‒–—―・「」『』【】（）()]/g, '');
+        const matches = tokens.every((token) => {
+          const compactToken = token.replace(/[\s\-‐‑‒–—―・「」『』【】（）()]/g, '');
+          return haystack.includes(token) || compactHaystack.includes(compactToken);
+        });
+        option.hidden = !matches;
+        return matches;
+      });
+      empty.hidden = visibleOptions.length > 0;
+      const suffix = query ? '件' : '冊';
+      result.textContent = query
+        ? `${visibleOptions.length}${suffix}見つかりました。`
+        : `全${visibleOptions.length}${suffix}。読書中・積読を先に表示します。`;
+      setExpanded(true);
+      activeIndex = -1;
+      options.forEach((option) => option.classList.remove('is-active'));
+      search.removeAttribute('aria-activedescendant');
+    }
+
+    search.addEventListener('focus', filterOptions);
+    search.addEventListener('click', filterOptions);
+    search.addEventListener('input', () => {
+      value.value = '';
+      clear.hidden = !search.value;
+      options.forEach((option) => option.setAttribute('aria-selected', 'false'));
+      filterOptions();
+      saveDraft();
+    });
+    search.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowDown') {
+        event.preventDefault();
+        if (menu.hidden) filterOptions();
+        setActive(activeIndex + 1);
+      } else if (event.key === 'ArrowUp') {
+        event.preventDefault();
+        if (menu.hidden) filterOptions();
+        setActive(activeIndex - 1);
+      } else if (event.key === 'Enter' && !menu.hidden && visibleOptions.length) {
+        event.preventDefault();
+        selectOption(visibleOptions[activeIndex >= 0 ? activeIndex : 0]);
+      } else if (event.key === 'Escape') {
+        setExpanded(false);
+      }
+    });
+    search.addEventListener('blur', () => {
+      window.setTimeout(() => {
+        const exact = options.find((option) => option.dataset.title === search.value.trim());
+        if (!value.value && exact) selectOption(exact, { persist: true });
+        setExpanded(false);
+      }, 120);
+    });
+
+    options.forEach((option) => {
+      option.addEventListener('mousedown', (event) => event.preventDefault());
+      option.addEventListener('click', () => selectOption(option));
+    });
+
+    clear.addEventListener('mousedown', (event) => event.preventDefault());
+    clear.addEventListener('click', () => {
+      selectOption(null);
+      search.focus();
+      filterOptions();
+    });
+
+    picker.syncFromValue = () => {
+      const selected = options.find((option) => option.dataset.title === value.value);
+      selectOption(selected || null, { persist: false });
+    };
+  }
+
+  function syncBookPickersFromValues() {
+    document.querySelectorAll('[data-book-picker]').forEach((picker) => picker.syncFromValue?.());
   }
 
   function serializeForm() {
@@ -75,6 +217,7 @@
     });
 
     showMode(currentMode());
+    syncBookPickersFromValues();
   }
 
   function buildNewBookPrompt() {
@@ -148,23 +291,97 @@
     try {
       output.value = buildPrompt();
       copyButton.disabled = false;
+      copyOpenButton.disabled = false;
       document.querySelector('#record-output-panel')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } catch (error) {
       copyStatus.textContent = error.message;
     }
   });
 
-  copyButton.addEventListener('click', async () => {
-    if (!output.value) return;
+  async function copyOutput() {
     try {
       await navigator.clipboard.writeText(output.value);
-      copyStatus.textContent = 'コピーしました。ChatGPTプロジェクト「読書管理」に貼り付けてください。';
+      return true;
     } catch (_) {
       output.focus();
       output.select();
-      document.execCommand('copy');
-      copyStatus.textContent = 'コピーしました。ChatGPTプロジェクト「読書管理」に貼り付けてください。';
+      try { return document.execCommand('copy'); } catch (_) { return false; }
     }
+  }
+
+  function readStoredChatgptUrl() {
+    try { return localStorage.getItem(chatgptUrlStorageKey) || ''; } catch (_) { return ''; }
+  }
+
+  function parseChatgptUrl(value) {
+    try {
+      const url = new URL(value);
+      const isChatgptHost = url.hostname === 'chatgpt.com' || url.hostname.endsWith('.chatgpt.com');
+      return url.protocol === 'https:' && isChatgptHost ? url.href : '';
+    } catch (_) {
+      return '';
+    }
+  }
+
+  function showChatgptUrlState() {
+    const savedUrl = readStoredChatgptUrl();
+    chatgptUrlInput.value = savedUrl;
+    chatgptUrlClear.hidden = !savedUrl;
+    chatgptUrlStatus.textContent = savedUrl ? '設定済みです。この端末だけに保存されています。' : '';
+  }
+
+  copyButton.addEventListener('click', async () => {
+    if (!output.value) return;
+    const copied = await copyOutput();
+    copyStatus.textContent = copied
+      ? 'コピーしました。'
+      : '自動コピーに失敗しました。上の文章を選択してコピーしてください。';
+  });
+
+  copyOpenButton.addEventListener('click', async () => {
+    if (!output.value) return;
+    const copied = await copyOutput();
+    if (!copied) {
+      copyStatus.textContent = '自動コピーに失敗しました。上の文章を選択してコピーしてください。';
+      return;
+    }
+
+    const projectUrl = parseChatgptUrl(readStoredChatgptUrl());
+    if (!projectUrl) {
+      copyStatus.textContent = 'コピーしました。最初の1回だけ、下にChatGPTプロジェクトのURLを設定してください。';
+      chatgptSetting.open = true;
+      chatgptUrlInput.focus();
+      chatgptSetting.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      return;
+    }
+
+    copyStatus.textContent = 'コピーしました。ChatGPTを開きます。';
+    window.setTimeout(() => window.location.assign(projectUrl), 120);
+  });
+
+  chatgptUrlSave.addEventListener('click', () => {
+    const projectUrl = parseChatgptUrl(chatgptUrlInput.value.trim());
+    if (!projectUrl) {
+      chatgptUrlStatus.textContent = 'https://chatgpt.com で始まるプロジェクトのURLを入力してください。';
+      return;
+    }
+    try {
+      localStorage.setItem(chatgptUrlStorageKey, projectUrl);
+      showChatgptUrlState();
+    } catch (_) {
+      chatgptUrlStatus.textContent = 'このブラウザには保存できませんでした。プライベートブラウズ等を解除して再度お試しください。';
+    }
+  });
+
+  chatgptUrlInput.addEventListener('keydown', (event) => {
+    if (event.key !== 'Enter') return;
+    event.preventDefault();
+    chatgptUrlSave.click();
+  });
+
+  chatgptUrlClear.addEventListener('click', () => {
+    try { localStorage.removeItem(chatgptUrlStorageKey); } catch (_) {}
+    showChatgptUrlState();
   });
 
   clearButton.addEventListener('click', () => {
@@ -177,9 +394,13 @@
     showMode('new');
     output.value = '';
     copyButton.disabled = true;
+    copyOpenButton.disabled = true;
     copyStatus.textContent = '';
     try { localStorage.removeItem(storageKey); } catch (_) {}
+    syncBookPickersFromValues();
   });
 
+  document.querySelectorAll('[data-book-picker]').forEach(initBookPicker);
   loadDraft();
+  showChatgptUrlState();
 })();

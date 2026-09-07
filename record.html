@@ -3,7 +3,6 @@ layout: default
 title: 記録する
 description: 本の登録、読書中メモ、読了後の感想を迷わず入力するフォーム
 ---
-{% assign books = site.pages | where: 'type', 'book' | sort: 'title' %}
 
 <section class="record-hero">
   <p class="kicker">ADD / UPDATE</p>
@@ -13,7 +12,7 @@ description: 本の登録、読書中メモ、読了後の感想を迷わず入�
 
 <section class="record-notice" aria-label="使い方">
   <strong>使い方</strong>
-  <p>フォーム入力 → 「ChatGPT用テキストを生成」→ コピー → ChatGPTプロジェクト「読書管理」に貼り付けてください。入力途中の内容はこの端末に自動保存されます。</p>
+  <p>フォーム入力 → テキスト生成 → 「コピーしてChatGPTを開く」→ プロジェクト「読書管理」に貼り付けてください。初回だけ、このページ下部でプロジェクトのURLを設定します。入力途中の内容はこの端末に自動保存されます。</p>
   <p>このリポジトリは公開です。勤務先・家族・健康・家計など、公開したくない個人情報は入力しないでください。</p>
 </section>
 
@@ -87,13 +86,10 @@ description: 本の登録、読書中メモ、読了後の感想を迷わず入�
           <h2>読書中のメモ</h2>
           <p>全部埋める必要はありません。残したい項目だけで十分です。</p>
         </div>
-        <label class="field field--wide">
-          <span>本 <em>必須</em></span>
-          <select name="progress_book">
-            <option value="">選択してください</option>
-            {% for book in books %}<option value="{{ book.title | escape }}">{{ book.title }}</option>{% endfor %}
-          </select>
-        </label>
+        <div class="field field--wide">
+          <label class="field__label" for="progress-book-search">本 <em>必須</em></label>
+          {% include book-picker.html id="progress-book-search" name="progress_book" %}
+        </div>
         <div class="field-row">
           <label class="field">
             <span>日付</span>
@@ -124,13 +120,10 @@ description: 本の登録、読書中メモ、読了後の感想を迷わず入�
           <h2>読了・感想</h2>
           <p>感想を思い出すための質問です。短くても、辛口でも、そのままでOK。</p>
         </div>
-        <label class="field field--wide">
-          <span>本 <em>必須</em></span>
-          <select name="review_book">
-            <option value="">選択してください</option>
-            {% for book in books %}<option value="{{ book.title | escape }}">{{ book.title }}</option>{% endfor %}
-          </select>
-        </label>
+        <div class="field field--wide">
+          <label class="field__label" for="review-book-search">本 <em>必須</em></label>
+          {% include book-picker.html id="review-book-search" name="review_book" %}
+        </div>
         <div class="field-row">
           <label class="field">
             <span>読み方</span>
@@ -191,9 +184,26 @@ description: 本の登録、読書中メモ、読了後の感想を迷わず入�
     <h2>ChatGPTに渡す文章</h2>
     <p>生成した文章をそのまま「読書管理」プロジェクトへ貼り付ければ、既存ルールに沿ってGitHubへ反映できます。</p>
     <textarea id="record-output" rows="18" readonly placeholder="左のフォームに入力して生成してください"></textarea>
-    <button class="button button--copy" type="button" id="copy-record-output" disabled>コピーする</button>
+    <div class="record-output__actions">
+      <button class="button button--copy" type="button" id="copy-open-record-output" disabled>コピーしてChatGPTを開く</button>
+      <button class="button button--quiet button--copy-only" type="button" id="copy-record-output" disabled>コピーのみ</button>
+    </div>
     <p class="copy-status" id="copy-status" role="status" aria-live="polite"></p>
+
+    <details class="chatgpt-setting" id="chatgpt-setting">
+      <summary>ChatGPTプロジェクトのリンクを設定</summary>
+      <p>ChatGPTで「読書管理」を開き、ブラウザのURLを貼り付けてください。URLはこのブラウザ内だけに保存されます。</p>
+      <label class="chatgpt-setting__field" for="chatgpt-project-url">
+        <span>プロジェクトURL</span>
+        <input id="chatgpt-project-url" type="url" inputmode="url" autocomplete="url" placeholder="https://chatgpt.com/…">
+      </label>
+      <div class="chatgpt-setting__actions">
+        <button class="button button--quiet" type="button" id="save-chatgpt-project-url">保存</button>
+        <button class="button button--quiet" type="button" id="clear-chatgpt-project-url" hidden>削除</button>
+      </div>
+      <p class="chatgpt-setting__status" id="chatgpt-setting-status" role="status" aria-live="polite"></p>
+    </details>
   </aside>
 </div>
 
-<script src="{{ '/assets/js/record.js' | relative_url }}" defer></script>
+<script src="{{ '/assets/js/record.js' | relative_url }}?v={{ site.github.build_revision | default: site.time | uri_escape }}" defer></script>

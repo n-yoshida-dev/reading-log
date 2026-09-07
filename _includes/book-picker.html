@@ -1,0 +1,59 @@
+{% assign picker_books = site.pages | where: 'type', 'book' | sort: 'title' %}
+<div class="book-picker" data-book-picker>
+  <div class="book-picker__control">
+    <input
+      id="{{ include.id }}"
+      class="book-picker__search"
+      type="search"
+      role="combobox"
+      aria-autocomplete="list"
+      aria-expanded="false"
+      aria-controls="{{ include.id }}-listbox"
+      aria-haspopup="listbox"
+      autocomplete="off"
+      spellcheck="false"
+      enterkeyhint="search"
+      placeholder="タイトル・著者・ISBNで検索"
+      data-book-search>
+    <button class="book-picker__clear" type="button" aria-label="選択を解除" data-book-clear hidden>×</button>
+  </div>
+  <input type="hidden" name="{{ include.name }}" data-book-value>
+  <div class="book-picker__menu" data-book-menu hidden>
+    <div id="{{ include.id }}-listbox" class="book-picker__options" role="listbox" data-book-options>
+      {% for book in picker_books %}
+        {% case book.status %}
+          {% when 'reading' %}{% assign picker_status = '読書中' %}
+          {% when 'paused' %}{% assign picker_status = '一時停止' %}
+          {% when 'finished' %}{% assign picker_status = '読了' %}
+          {% when 'skimmed' %}{% assign picker_status = '拾い読み' %}
+          {% when 'abandoned' %}{% assign picker_status = '中止' %}
+          {% else %}{% assign picker_status = '積読' %}
+        {% endcase %}
+        <button
+          id="{{ include.id }}-option-{{ forloop.index }}"
+          class="book-picker__option"
+          type="button"
+          role="option"
+          aria-selected="false"
+          data-book-option
+          data-title="{{ book.title | escape }}"
+          data-search="{{ book.title | escape }} {{ book.author | escape }} {{ book.isbn10 | escape }} {{ book.isbn13 | escape }}"
+          data-status="{{ book.status | default: 'unread' | escape }}"
+          data-reading-order="{{ book.reading_order | default: 9999 }}">
+          <span class="book-picker__option-main">
+            <strong>{{ book.title | escape }}</strong>
+            <small>
+              {% if book.author and book.author != '' %}{{ book.author | escape }}{% else %}著者未登録{% endif %}
+              {% if book.isbn13 and book.isbn13 != '' %} · ISBN {{ book.isbn13 | escape }}{% endif %}
+            </small>
+          </span>
+          <span class="book-picker__badge" data-status="{{ book.status | default: 'unread' | escape }}">
+            {{ picker_status }}{% if book.status == 'reading' and book.progress != nil %} {{ book.progress }}%{% endif %}
+          </span>
+        </button>
+      {% endfor %}
+    </div>
+    <p class="book-picker__empty" data-book-empty hidden>該当する本がありません。</p>
+  </div>
+  <small class="book-picker__result" data-book-result>全{{ picker_books.size }}冊。読書中・積読を先に表示します。</small>
+</div>
