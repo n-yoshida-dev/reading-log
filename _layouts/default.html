@@ -13,12 +13,12 @@
     <meta property="og:image" content="{{ '/assets/images/og-image.png' | absolute_url }}">
     <meta name="twitter:card" content="summary_large_image">
     <title>{% if page.title %}{{ page.title | escape }} · {% endif %}{{ site.title | escape }}</title>
+    {% assign asset_version = site.github.build_revision | default: site.time %}
     <link rel="icon" href="{{ '/assets/images/site-icon.svg' | relative_url }}" type="image/svg+xml">
     <link rel="icon" href="{{ '/assets/images/site-icon-32.png' | relative_url }}" sizes="32x32" type="image/png">
     <link rel="apple-touch-icon" href="{{ '/assets/images/site-icon-180.png' | relative_url }}">
-    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-    <link rel="stylesheet" href="{{ '/assets/css/record.css' | relative_url }}">
-    {% assign asset_version = site.github.build_revision | default: site.time %}
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v={{ asset_version | uri_escape }}">
+    <link rel="stylesheet" href="{{ '/assets/css/record.css' | relative_url }}?v={{ asset_version | uri_escape }}">
     <script src="{{ '/assets/js/bookshelf.js' | relative_url }}?v={{ asset_version | uri_escape }}" defer></script>
   </head>
   <body>
