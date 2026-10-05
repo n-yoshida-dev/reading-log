@@ -1,66 +1,65 @@
 # Reading Log
 
-ChatGPT・Claude・Claude Codeを横断して使う、個人用の読書管理リポジトリです。
-本の書誌情報、進捗、読書メモ、感想、要約、読了後のアクションをMarkdownで管理します。
+読書記録を「残す」だけで終わらせず、**次に読む本と、読後にやることまでつなげる**ための個人用システムです。
 
-- 正本: このGitHubリポジトリ
-- 日常の作業場所: ChatGPTプロジェクト「読書管理」
-- 大量登録・構造変更: Claude Code
-- 定期レビュー: ChatGPTの週次タスク
-- 閲覧画面: [GitHub Pages](https://n-yoshida-dev.github.io/reading-log/)
+**[GitHub Pages で本棚を見る →](https://n-yoshida-dev.github.io/reading-log/)**
 
-本棚ではタイトル・著者検索、カテゴリ絞り込み、カテゴリ・Amazon評価・評価数・刊行日による並べ替えができます。Amazon評価は登録時点のスナップショットで、取得日と一緒に保存します。
+![reading-log の仕組み](assets/images/reading-log-overview.svg)
 
-## 運用の原則
+## 何をしているか
 
-1. 1冊につき `books/` 内のMarkdownを1ファイル作成します。
-2. 書誌情報を推測で確定せず、不明項目は空欄のまま残します。
-3. その場で整理できない入力だけを `inbox/` に置きます。
-4. 読書メモは日付順に追記し、過去の本人の記述を勝手に要約・削除しません。
-5. 公開リポジトリなので、個人情報、勤務先・案件の機密情報、書籍本文の長い引用は記録しません。
+- **会話から記録** — 本の登録、進捗、メモ、感想をChatGPT / Claude経由で追加
+- **GitHubを正本にする** — 1冊1Markdownで、会話に閉じず履歴を残す
+- **読む順番を毎週見直す** — 90日目標、現在の課題、読書進捗、会話コンテキストから次の1冊を選ぶ
+- **AIごとの判断を揃える** — `AI_RULES.md` をChatGPT / Claude / Claude Code共通の運用ルールにする
+- **GitHub Pagesで読む** — 「いま読む」「次に読む」「すべての本」、検索・絞り込み・並べ替え、各本の詳細を表示
 
-AIが更新する際の正式なルールは [AI_RULES.md](AI_RULES.md) を参照してください。
+単なる読了リストではなく、**入力 → 記録 → 週次レビュー → 次の読書 → 行動**を1つの流れとして扱うのが目的です。
 
-## ディレクトリ
+## 構成
+
+| 役割 | 使っているもの |
+| --- | --- |
+| 日常の入力・相談 | ChatGPTプロジェクト「読書管理」 |
+| 正本 | このGitHubリポジトリ |
+| 大量登録・構造変更 | Claude Code |
+| 共通ルール | [`AI_RULES.md`](AI_RULES.md) |
+| 週次レビュー | [`reviews/latest.md`](reviews/latest.md) |
+| 閲覧 | [GitHub Pages](https://n-yoshida-dev.github.io/reading-log/) |
 
 ```text
 reading-log/
-├── books/                       # 1冊につき1ファイル
-├── inbox/                       # 未整理の入力
-├── reviews/                     # 週次レビュー
-│   └── latest.md                # 最新レビューへの固定URL
-├── templates/                   # 本・週次レビューのテンプレート
-├── assets/covers/               # 使用許可を確認した表紙画像のみ
-├── AI_RULES.md                  # 全AI共通の正式ルール
-├── CHATGPT_PROJECT_INSTRUCTIONS.md
-├── AGENTS.md                    # Codex向け入口
-└── CLAUDE.md                    # Claude Code向け入口
+├── books/        # 1冊につき1ファイル
+├── inbox/        # 未整理の入力
+├── reviews/      # 週次レビュー
+├── templates/    # 登録・レビュー用テンプレート
+├── AI_RULES.md   # 全AI共通の運用ルール
+└── index.html    # GitHub Pagesの本棚
 ```
 
-## ステータス
+## 読む順番の決め方
 
-- `unread`: 未読・積読
-- `reading`: 読書中
-- `paused`: 一時停止
-- `finished`: 読了
-- `skimmed`: 必要箇所を拾い読みして完了
-- `abandoned`: 読む価値が薄いと判断して中止
+週次レビューでは、単純な「読みたい順」ではなく、主に次を見ます。
 
-同時に `reading` にする本は原則2冊までです。読み切ること自体を目的にせず、`skimmed` と `abandoned` も正常な完了判断として扱います。
+1. 現在の90日目標に直結するか
+2. 仕事・開発・資格学習・生活上の課題を前進させるか
+3. 読みかけを完了する価値があるか
+4. 今週の時間で有効な区切りまで進められるか
+5. 先に実行すべき読後アクションが残っていないか
 
-## iPhoneからの入力例
+主提案は原則1冊。必要なときだけ代替を1冊出し、決定後は各本の `reading_order` に反映します。
 
-- 「この表紙とISBNの本を登録して。買った理由はGoの設計を学ぶため」
-- 「今日は85ページまで。第3章の考え方をOrgFlowに試したい」
-- 「読了。今週中にREADMEの設計判断を書き直す、をアクションに追加して」
-- 「積読と今の90日目標を見て、次に読む本を1冊に絞って」
+## 記録で重視していること
 
-GitHubへ反映した場合は、AIから変更ファイルと変更内容の報告を受け取ります。
+- 読書メモは日付順に追記し、過去の自分の記述を勝手に要約・削除しない
+- AIの要約と、自分自身の感想・理解を混同しない
+- 読了を目的化せず、`paused` / `skimmed` / `abandoned` も正常な判断として扱う
+- 公開リポジトリなので、個人情報・業務機密・書籍本文の長い引用は残さない
 
-## GitHub Pagesの有効化
+詳細な運用仕様は [`AI_RULES.md`](AI_RULES.md) にまとめています。
 
-リポジトリの `Settings` → `Pages` → `Build and deployment` で、Sourceを `Deploy from a branch`、Branchを `main`、Folderを `/(root)` に設定します。以後はMarkdownの更新に追随してサイトが再生成されます。
+## このリポジトリについて
 
-## 外部からの変更について
+現時点では**自分の読書運用に合わせた個人用システム**として整備しており、汎用ツールとしての導入手順は用意していません。
 
-これは個人の読書記録です。外部からのIssue、Pull Request、レビューは受け付けません。リポジトリ設定の `Features` で Pull requests・Issues・Discussions・Wikiを無効化して運用します。
+外部からのIssue / Pull Requestを前提としたプロジェクトではありません。

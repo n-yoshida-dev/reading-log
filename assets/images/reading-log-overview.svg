@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
+  <title id="title">reading-log の仕組み</title>
+  <desc id="desc">読書の入力からGitHubへの記録、週次レビュー、GitHub Pagesでの活用までを示す図</desc>
+  <rect width="1200" height="560" rx="28" fill="#f4f0e7"/>
+
+  <g font-family="-apple-system,BlinkMacSystemFont,'Hiragino Sans','Yu Gothic','Noto Sans JP',sans-serif" fill="#18211d">
+    <text x="56" y="58" font-size="15" font-weight="800" letter-spacing="3" fill="#d66d3b">READING LOG / WORKFLOW</text>
+    <text x="56" y="96" font-size="29" font-weight="760">読書記録を、次の一冊と行動につなげる</text>
+    <text x="56" y="126" font-size="15" fill="#66706a">会話で入力 → Markdownを正本化 → 週次で優先順位を見直す → Pagesで見る</text>
+
+    <!-- connectors -->
+    <g stroke="#9aa29d" stroke-width="2" fill="none">
+      <path d="M298 286 H326"/>
+      <path d="M594 286 H622"/>
+      <path d="M890 286 H918"/>
+    </g>
+    <g fill="#9aa29d">
+      <path d="M326 286 l-8 -5 v10z"/>
+      <path d="M622 286 l-8 -5 v10z"/>
+      <path d="M918 286 l-8 -5 v10z"/>
+    </g>
+
+    <!-- 01 -->
+    <g transform="translate(56 166)">
+      <rect width="242" height="246" rx="18" fill="#fffdf7" stroke="#d7d0c4"/>
+      <text x="20" y="32" font-size="12" font-weight="800" letter-spacing="2" fill="#d66d3b">01  CAPTURE</text>
+      <text x="20" y="62" font-size="21" font-weight="750">会話から入力</text>
+
+      <!-- book icon -->
+      <g transform="translate(22 92)" stroke="#1e4f40" stroke-width="2.2" fill="none" stroke-linejoin="round">
+        <path d="M2 4h34a7 7 0 0 1 7 7v35H9a7 7 0 0 0-7 7z"/>
+        <path d="M2 4v49a7 7 0 0 1 7-7h34"/>
+        <path d="M11 14h21M11 23h16" stroke="#d66d3b"/>
+      </g>
+      <text x="82" y="112" font-size="15" font-weight="700">本を登録</text>
+      <text x="82" y="135" font-size="13" fill="#66706a">ISBN / 読む目的</text>
+
+      <!-- note icon -->
+      <g transform="translate(22 158)" stroke="#1e4f40" stroke-width="2.2" fill="none" stroke-linecap="round">
+        <rect x="3" y="3" width="38" height="43" rx="5"/>
+        <path d="M12 14h20M12 23h20M12 32h13"/>
+      </g>
+      <text x="82" y="178" font-size="15" font-weight="700">読書メモ・進捗</text>
+      <text x="82" y="201" font-size="13" fill="#66706a">感想 / ページ / 行動</text>
+    </g>
+
+    <!-- 02 -->
+    <g transform="translate(352 166)">
+      <rect width="242" height="246" rx="18" fill="#fffdf7" stroke="#d7d0c4"/>
+      <text x="20" y="32" font-size="12" font-weight="800" letter-spacing="2" fill="#d66d3b">02  RECORD</text>
+      <text x="20" y="62" font-size="21" font-weight="750">GitHubを正本に</text>
+
+      <rect x="20" y="88" width="202" height="126" rx="12" fill="#1e4f40"/>
+      <circle cx="38" cy="106" r="4" fill="#fffdf7" opacity=".85"/>
+      <text x="52" y="111" font-size="13" font-weight="700" fill="#fffdf7">reading-log</text>
+      <g font-size="13" fill="#18211d">
+        <rect x="30" y="128" width="182" height="28" rx="7" fill="#fffdf7"/>
+        <text x="44" y="147">books/</text>
+        <rect x="30" y="163" width="182" height="28" rx="7" fill="#fffdf7"/>
+        <text x="44" y="182">reviews/</text>
+      </g>
+      <text x="20" y="235" font-size="12" fill="#66706a">1冊 = 1 Markdown / 履歴を残す</text>
+    </g>
+
+    <!-- 03 -->
+    <g transform="translate(648 166)">
+      <rect width="242" height="246" rx="18" fill="#fffdf7" stroke="#d7d0c4"/>
+      <text x="20" y="32" font-size="12" font-weight="800" letter-spacing="2" fill="#d66d3b">03  REVIEW</text>
+      <text x="20" y="62" font-size="21" font-weight="750">毎週、読む順を更新</text>
+
+      <rect x="20" y="89" width="92" height="50" rx="10" fill="#dbe8e1"/>
+      <text x="66" y="111" text-anchor="middle" font-size="12" font-weight="700">90日目標</text>
+      <text x="66" y="128" text-anchor="middle" font-size="11" fill="#66706a">仕事・学習</text>
+      <rect x="130" y="89" width="92" height="50" rx="10" fill="#eee8dc"/>
+      <text x="176" y="111" text-anchor="middle" font-size="12" font-weight="700">コンテキスト</text>
+      <text x="176" y="128" text-anchor="middle" font-size="11" fill="#66706a">会話・進捗</text>
+
+      <path d="M66 139v17h110v-17" stroke="#9aa29d" stroke-width="1.8" fill="none"/>
+      <rect x="54" y="156" width="134" height="33" rx="16" fill="#1e4f40"/>
+      <text x="121" y="177" text-anchor="middle" font-size="12" font-weight="750" fill="#fffdf7">AI_RULES.md</text>
+      <path d="M121 189v13" stroke="#9aa29d" stroke-width="1.8"/>
+      <text x="121" y="222" text-anchor="middle" font-size="14" font-weight="750">次に読む 1冊</text>
+      <text x="121" y="240" text-anchor="middle" font-size="11" fill="#66706a">+ 必要なら代替 1冊</text>
+    </g>
+
+    <!-- 04 -->
+    <g transform="translate(944 166)">
+      <rect width="200" height="246" rx="18" fill="#fffdf7" stroke="#d7d0c4"/>
+      <text x="20" y="32" font-size="12" font-weight="800" letter-spacing="2" fill="#d66d3b">04  USE</text>
+      <text x="20" y="62" font-size="21" font-weight="750">Pagesで見る</text>
+
+      <rect x="20" y="88" width="160" height="120" rx="10" fill="#f4f0e7" stroke="#cfc8bc"/>
+      <rect x="20" y="88" width="160" height="24" rx="10" fill="#1e4f40"/>
+      <circle cx="34" cy="100" r="3" fill="#fffdf7" opacity=".85"/>
+      <circle cx="44" cy="100" r="3" fill="#fffdf7" opacity=".55"/>
+      <circle cx="54" cy="100" r="3" fill="#fffdf7" opacity=".35"/>
+      <rect x="32" y="126" width="50" height="7" rx="3.5" fill="#d66d3b"/>
+      <rect x="32" y="141" width="134" height="14" rx="5" fill="#fffdf7" stroke="#d7d0c4"/>
+      <rect x="32" y="163" width="63" height="31" rx="6" fill="#dbe8e1"/>
+      <rect x="103" y="163" width="63" height="31" rx="6" fill="#eee8dc"/>
+      <text x="20" y="230" font-size="12" fill="#66706a">いま読む / 次に読む / 検索</text>
+    </g>
+
+    <!-- bottom rail -->
+    <line x1="56" y1="454" x2="1144" y2="454" stroke="#cfc8bc"/>
+    <text x="56" y="489" font-size="12" font-weight="800" letter-spacing="1.5" fill="#66706a">MULTI-AGENT, ONE SOURCE</text>
+    <g transform="translate(56 506)" font-size="13" font-weight="700">
+      <rect width="116" height="30" rx="15" fill="#dbe8e1"/><text x="58" y="20" text-anchor="middle">ChatGPT</text>
+      <rect x="126" width="96" height="30" rx="15" fill="#eee8dc"/><text x="174" y="20" text-anchor="middle">Claude</text>
+      <rect x="232" width="128" height="30" rx="15" fill="#eee8dc"/><text x="296" y="20" text-anchor="middle">Claude Code</text>
+      <path d="M382 15h44" stroke="#9aa29d" stroke-width="2"/>
+      <path d="M426 15 l-8 -5 v10z" fill="#9aa29d"/>
+      <rect x="446" width="174" height="30" rx="15" fill="#1e4f40"/><text x="533" y="20" text-anchor="middle" fill="#fffdf7">同じルールで更新</text>
+      <text x="646" y="20" fill="#66706a" font-weight="500">→ 記録が会話に閉じず、GitHubに残る</text>
+    </g>
+  </g>
+</svg>
