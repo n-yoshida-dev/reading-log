@@ -37,9 +37,27 @@ import sys
 # 13〜19桁。区切りはハイフン・スペースのみ許可（カンマは金額なので除外）
 CARD_CANDIDATE = re.compile(r"(?<![0-9])(?:[0-9][ -]?){12,18}[0-9](?![0-9])")
 
+# カード番号の判定の前に除く URL（2026-10-06 追加）。
+# 2026-10-06 に、note 公式ヘルプの記事 URL（…/hc/ja/articles/ のあとの 14 桁）が偶然 Luhn を通って誤検知した。
+# URL の外に書かれたカード番号は引き続き弾く（同じ行に URL があっても）
+URL = re.compile(r"https?://[^\s)\]>」]+")
+
 # 同一行にこの語があり、かつ4桁以上の数字が並んでいたら口座情報とみなす
 ACCOUNT_KEYWORD = re.compile(r"口座番号|口座No|口座№|振込先|店番号|支店番号|カード番号")
 FOUR_DIGITS = re.compile(r"[0-9]{4,}")
+
+# 口座情報の判定の前に行から除く「口座番号ではない数字」（2026-10-04 追加）。
+# 2026-10-04 に、この語を含む行の「runtime.mjs:1187-1194」「/tmp/claude-1000/…」「2026-10-04」で誤検知した。
+# 本物の口座番号を見逃さないよう、形がはっきりした 3 種類だけに絞る:
+#   日付（19xx・20xx の年で始まる 2026-10-04 / 2026/10 / 2026年10月4日）
+#   ファイル名:行番号（英字の拡張子の直後の「:数字」。runtime.mjs:1187-1194）
+#   英字を含むパス（/tmp/claude-1000/… 。「/1234567」のように数字だけのものは除かない）
+BENIGN_NUMBERS = re.compile(
+    r"(?<![0-9])(?:19|20)[0-9]{2}"
+    r"(?:[-/.][0-9]{1,2}(?:[-/.][0-9]{1,2})?|年(?:[0-9]{1,2}月(?:[0-9]{1,2}日)?)?)(?![0-9])"
+    r"|[A-Za-z0-9_./-]*\.[A-Za-z][A-Za-z0-9]*:[0-9]+(?:[-–,][0-9]+)*"
+    r"|(?:~|\.{1,2})?/[A-Za-z0-9_.~-]*[A-Za-z][A-Za-z0-9_.~/-]*"
+)
 
 # 残高は「金額として書かれている」場合のみ弾く（¥ か 円 が同一行にある）
 BALANCE_KEYWORD = re.compile(r"残高")
@@ -62,13 +80,13 @@ def luhn_ok(digits: str) -> bool:
 def find_violations(text: str, allow_balance: bool = False) -> list[str]:
     hits = []
 
-    for m in CARD_CANDIDATE.finditer(text):
+    for m in CARD_CANDIDATE.finditer(URL.sub(" ", text)):
         digits = re.sub(r"[ -]", "", m.group())
         if 13 <= len(digits) <= 19 and luhn_ok(digits):
             hits.append(f"カード番号らしい数字列（下4桁 {digits[-4:]}）")
 
     for line in text.splitlines():
-        if ACCOUNT_KEYWORD.search(line) and FOUR_DIGITS.search(line):
+        if ACCOUNT_KEYWORD.search(line) and FOUR_DIGITS.search(BENIGN_NUMBERS.sub(" ", line)):
             hits.append(f"口座情報らしい行: {line.strip()[:40]}")
         if not allow_balance and BALANCE_KEYWORD.search(line) and MONEY.search(line):
             hits.append(f"残高らしい行: {line.strip()[:40]}")
@@ -105,7 +123,9 @@ def main() -> None:
     try:
         payload = json.load(sys.stdin)
     except (json.JSONDecodeError, ValueError):
-        sys.exit(0)
+        # 入力が読めないときは通さず止める（2026-10-19。以前は exit 0 で素通しだった。VS Code 設定見直し 2 回目の A9）
+        print("sensitive-numbers-guard: 入力の JSON を読めなかったので止めました", file=sys.stderr)
+        sys.exit(2)
 
     text, path = extract(payload.get("tool_input", {}))
     if not text:

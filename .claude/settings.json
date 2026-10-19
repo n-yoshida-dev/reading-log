@@ -7,7 +7,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/sensitive-numbers-guard.py\""
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/sensitive-numbers-guard.py\"",
+            "onFailure": "block"
           }
         ]
       }
