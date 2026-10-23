@@ -35,24 +35,15 @@ layout: default
       {% if page.author %}<p class="book-detail__author">{{ page.author }}</p>{% endif %}
       {% if page.purpose %}<p class="book-detail__purpose">{{ page.purpose }}</p>{% endif %}
 
-      <div class="progress" aria-label="進捗 {{ progress }}%">
+      <div class="progress" role="progressbar" aria-label="読書の進捗" aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100">
         <div class="progress__meta"><span>進捗</span><strong>{{ progress }}%</strong></div>
         <div class="progress__track"><span style="width: {{ progress }}%"></span></div>
       </div>
 
-      <dl class="metadata">
-        {% if page.category %}<div><dt>カテゴリ</dt><dd>{{ page.category }}</dd></div>{% endif %}
+      <dl class="book-facts">
+        {% if page.category %}<div><dt class="visually-hidden">カテゴリ</dt><dd>{{ page.category }}</dd></div>{% endif %}
         {% if page.user_rating %}<div><dt>自分の評価</dt><dd>★ {{ page.user_rating }} / 5</dd></div>{% endif %}
-        {% if page.isbn10 %}<div><dt>ISBN-10</dt><dd>{{ page.isbn10 }}</dd></div>{% endif %}
-        {% if page.isbn13 %}<div><dt>ISBN-13</dt><dd>{{ page.isbn13 }}</dd></div>{% endif %}
-        {% if page.publisher %}<div><dt>出版社</dt><dd>{{ page.publisher }}</dd></div>{% endif %}
-        {% if page.published_at %}<div><dt>刊行日</dt><dd>{{ page.published_at | date: '%Y-%m-%d' }}</dd></div>{% endif %}
-        {% if page.page_count %}<div><dt>ページ数</dt><dd>{{ page.page_count }}ページ</dd></div>{% endif %}
-        {% if page.started_at %}<div><dt>開始</dt><dd>{{ page.started_at | date: '%Y-%m-%d' }}</dd></div>{% endif %}
-        {% if page.finished_at %}<div><dt>完了</dt><dd>{{ page.finished_at | date: '%Y-%m-%d' }}</dd></div>{% endif %}
         {% if page.last_read_at %}<div><dt>最終読書</dt><dd>{{ page.last_read_at | date: '%Y-%m-%d' }}</dd></div>{% endif %}
-        {% if page.amazon_rating %}<div><dt>Amazon評価</dt><dd>★ {{ page.amazon_rating }} / 5（<span data-rating-count-display>{{ page.amazon_rating_count }}</span>件）</dd></div>{% endif %}
-        {% if page.amazon_rating_recorded_at %}<div><dt>Amazon評価取得日</dt><dd>{{ page.amazon_rating_recorded_at | date: '%Y-%m-%d' }}</dd></div>{% endif %}
       </dl>
 
       {% if page.amazon_url %}
@@ -66,6 +57,21 @@ layout: default
       {% endif %}
     </div>
   </header>
+
+  <details class="book-metadata">
+    <summary>書籍情報と読書履歴</summary>
+      <dl class="metadata">
+        {% if page.isbn10 %}<div><dt>ISBN-10</dt><dd>{{ page.isbn10 }}</dd></div>{% endif %}
+        {% if page.isbn13 %}<div><dt>ISBN-13</dt><dd>{{ page.isbn13 }}</dd></div>{% endif %}
+        {% if page.publisher %}<div><dt>出版社</dt><dd>{{ page.publisher }}</dd></div>{% endif %}
+        {% if page.published_at %}<div><dt>刊行日</dt><dd>{{ page.published_at | date: '%Y-%m-%d' }}</dd></div>{% endif %}
+        {% if page.page_count %}<div><dt>ページ数</dt><dd>{{ page.page_count }}ページ</dd></div>{% endif %}
+        {% if page.started_at %}<div><dt>開始</dt><dd>{{ page.started_at | date: '%Y-%m-%d' }}</dd></div>{% endif %}
+        {% if page.finished_at %}<div><dt>完了</dt><dd>{{ page.finished_at | date: '%Y-%m-%d' }}</dd></div>{% endif %}
+        {% if page.amazon_rating %}<div><dt>Amazon評価</dt><dd>★ {{ page.amazon_rating }} / 5（<span data-rating-count-display>{{ page.amazon_rating_count }}</span>件）</dd></div>{% endif %}
+        {% if page.amazon_rating_recorded_at %}<div><dt>Amazon評価取得日</dt><dd>{{ page.amazon_rating_recorded_at | date: '%Y-%m-%d' }}</dd></div>{% endif %}
+      </dl>
+  </details>
 
   <div class="prose book-detail__body">
     {{ content }}

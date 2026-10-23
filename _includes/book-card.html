@@ -53,7 +53,7 @@
     </div>
 
     {% if book.status == 'reading' or book.status == 'paused' %}
-    <div class="progress progress--compact" aria-label="進捗 {{ progress }}%">
+    <div class="progress progress--compact" role="progressbar" aria-label="読書の進捗" aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100">
       <div class="progress__meta"><strong>{{ progress }}%</strong></div>
       <div class="progress__track"><span style="width: {{ progress }}%"></span></div>
     </div>

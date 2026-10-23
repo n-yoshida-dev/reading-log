@@ -1,0 +1,10 @@
+---
+layout: default
+---
+<article class="document-page">
+  <nav class="document-nav" aria-label="レビューの移動">
+    {% unless page.url == '/reviews/' %}<a href="{{ '/reviews/' | relative_url }}">← レビュー一覧</a>{% endunless %}
+    {% unless page.url == '/reviews/latest/' %}<a href="{{ '/reviews/latest/' | relative_url }}">最新のレビュー</a>{% endunless %}
+  </nav>
+  <div class="prose">{{ content }}</div>
+</article>

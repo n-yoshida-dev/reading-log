@@ -17,7 +17,7 @@ defaults:
   - scope:
       path: reviews
     values:
-      layout: default
+      layout: review
 
 exclude:
   - AGENTS.md
@@ -31,5 +31,6 @@ exclude:
   - inbox
   - templates
   - vendor
+  - docs
   - books/README.md
   - assets/covers/README.md
