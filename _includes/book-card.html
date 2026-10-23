@@ -39,21 +39,24 @@
   </a>
 
   <div class="book-card__content">
+    {% if include.hide_status != true or include.show_order %}
     <div class="book-card__eyebrow">
-      <span class="status status--{{ book.status }}">{{ status_label }}</span>
-      {% if book.reading_order and book.reading_order != 999 %}<span class="order">#{{ book.reading_order }}</span>{% endif %}
+      {% unless include.hide_status %}<span class="status status--{{ book.status }}">{{ status_label }}</span>{% endunless %}
+      {% if include.show_order and book.reading_order and book.reading_order != 999 %}<span class="order" aria-label="読む順番 {{ book.reading_order }}">#{{ book.reading_order }}</span>{% endif %}
     </div>
+    {% endif %}
     <h3><a href="{{ book.url | relative_url }}">{{ book.title }}</a></h3>
     {% if book.author %}<p class="book-card__author">{{ book.author }}</p>{% endif %}
     <div class="book-card__meta">
       {% if book.category %}<span class="category-chip">{{ book.category }}</span>{% endif %}
       {% if book.user_rating %}<span class="user-rating" aria-label="自分の評価 {{ book.user_rating }} / 5">★ {{ book.user_rating }}</span>{% endif %}
-
     </div>
 
+    {% if book.status == 'reading' or book.status == 'paused' %}
     <div class="progress progress--compact" aria-label="進捗 {{ progress }}%">
-      <div class="progress__meta"><span>進捗</span><strong>{{ progress }}%</strong></div>
+      <div class="progress__meta"><strong>{{ progress }}%</strong></div>
       <div class="progress__track"><span style="width: {{ progress }}%"></span></div>
     </div>
+    {% endif %}
   </div>
 </article>

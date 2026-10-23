@@ -38,10 +38,9 @@ description: 読書中、次に読む本、読了後の行動を一覧する個�
   <section class="shelf-section">
     <header class="section-heading">
       <h2>読書中</h2>
-      
     </header>
     <div class="book-grid">
-      {% for book in reading_books %}{% include book-card.html book=book %}{% endfor %}
+      {% for book in reading_books %}{% include book-card.html book=book hide_status=true %}{% endfor %}
     </div>
   </section>
 {% endif %}
@@ -50,10 +49,10 @@ description: 読書中、次に読む本、読了後の行動を一覧する個�
   <section class="shelf-section">
     <header class="section-heading">
       <h2>次に読む</h2>
-      
+
     </header>
     <div class="book-grid">
-      {% for book in unread_books limit: 3 %}{% include book-card.html book=book %}{% endfor %}
+      {% for book in unread_books limit: 3 %}{% include book-card.html book=book hide_status=true show_order=true %}{% endfor %}
     </div>
   </section>
 {% endif %}
@@ -68,12 +67,12 @@ description: 読書中、次に読む本、読了後の行動を一覧する個�
     <div class="shelf-controls" aria-label="本棚の検索と並べ替え">
       <label class="control control--search">
         <span class="visually-hidden">本を検索</span>
-        <input id="book-search" type="search" placeholder="タイトル・著者で検索" aria-label="本を検索" autocomplete="off">
+        <input id="book-search" type="search" placeholder="タイトル・著者で検索" autocomplete="off">
       </label>
       <label class="control">
         <span class="visually-hidden">カテゴリ</span>
         <select id="category-filter">
-          <option value="all">すべて</option>
+          <option value="all">全カテゴリ</option>
           <option value="コミュニケーション">コミュニケーション</option>
           <option value="思考法・仕事術">思考法・仕事術</option>
           <option value="子育て・教育">子育て・教育</option>
