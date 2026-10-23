@@ -372,3 +372,56 @@ img { display: block; max-width: 100%; }
   .status--abandoned { color: #c5cac7; background: #3b403d; }
   .amazon-rating { color: #f0a47c; }
 }
+
+
+/* Quiet bookshelf: hierarchy is carried by the shelves, covers and titles. */
+.visually-hidden { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+.bookshelf-intro { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; padding: 8px 0 28px; border-bottom: 1px solid var(--line); }
+.bookshelf-intro h1 { margin: 0; font-family: Georgia, "Yu Mincho", serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 500; letter-spacing: -0.035em; }
+.bookshelf-intro__review { color: var(--forest); font-size: .88rem; font-weight: 700; text-decoration: none; white-space: nowrap; }
+.bookshelf-intro__review:hover { text-decoration: underline; }
+.stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.stats > div { padding-block: 16px; }
+.stats strong { font-size: 1.6rem; }
+.shelf-section { margin-top: 52px; }
+.section-heading { margin-bottom: 18px; padding-bottom: 12px; }
+.section-heading h2 { font-size: clamp(1.55rem, 3vw, 2.1rem); }
+.shelf-controls { grid-template-columns: minmax(220px, 1.5fr) minmax(160px, 1fr) minmax(180px, 1fr) auto; align-items: center; padding: 12px; background: transparent; }
+.control--toggle { grid-column: auto; }
+.book-grid { gap: 16px; }
+.book-card { grid-template-columns: 110px minmax(0, 1fr); gap: 18px; min-height: 190px; padding: 16px; border-color: var(--line); box-shadow: none; }
+.book-cover { min-height: 160px; }
+.book-cover img { object-fit: contain; background: var(--paper-deep); }
+.book-card h3 { margin-top: 8px; font-size: 1.14rem; }
+.book-card__meta { margin-top: 8px; }
+.book-card__meta .category-chip { color: var(--muted); border: 0; padding: 0; font-weight: 500; }
+.book-card__eyebrow .order { font-size: .76rem; }
+.book-card .progress--compact { padding-top: 10px; }
+.book-card .progress__meta span { display: none; }
+.shelf-section:has(.book-grid:not(#all-books-grid)) .book-card__eyebrow .status { display: none; }
+.site-footer__inner { min-height: 70px; }
+@media (max-width: 860px) {
+  .shelf-controls { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .control--search { grid-column: 1 / -1; }
+  .control--toggle { grid-column: 1 / -1; }
+}
+@media (max-width: 620px) {
+  .bookshelf-intro { padding-bottom: 20px; }
+  .bookshelf-intro__review { font-size: .78rem; }
+  .stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .stats > div { padding: 12px 8px; border-bottom: 0 !important; border-right: 1px solid var(--line) !important; }
+  .stats > div:last-child { border-right: 0 !important; }
+  .stats strong { font-size: 1.35rem; }
+  .stats span { font-size: .72rem; }
+  .shelf-section { margin-top: 38px; }
+  .section-heading { flex-direction: row; align-items: baseline; }
+  .shelf-controls { grid-template-columns: 1fr 1fr; padding: 10px; }
+  .control--search { grid-column: 1 / -1; }
+  .control--toggle { grid-column: 1 / -1; }
+  .book-card { grid-template-columns: 90px minmax(0, 1fr); min-height: 158px; gap: 14px; padding: 12px; }
+  .book-cover { min-height: 134px; }
+  .book-cover__placeholder { padding: 14px 10px; }
+  .book-cover__placeholder span { font-size: .83rem; }
+  .book-card h3 { font-size: 1.03rem; }
+  .book-card__meta .category-chip { display: none; }
+}
