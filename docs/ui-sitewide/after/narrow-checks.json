@@ -1,0 +1,37 @@
+[
+  {
+    "page": "bookshelf",
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "page": "book-reading",
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "page": "book-finished",
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "page": "review",
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "page": "reviews",
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "page": "404",
+    "scroll": 320,
+    "width": 320
+  },
+  {
+    "page": "record",
+    "scroll": 305,
+    "width": 320
+  }
+]

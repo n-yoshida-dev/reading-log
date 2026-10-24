@@ -8,6 +8,7 @@
   const copyButton = document.querySelector('#copy-record-output');
   const copyOpenButton = document.querySelector('#copy-open-record-output');
   const copyStatus = document.querySelector('#copy-status');
+  const formError = document.querySelector('#record-error');
   const clearButton = document.querySelector('#clear-record-form');
   const chatgptSetting = document.querySelector('#chatgpt-setting');
   const chatgptUrlInput = document.querySelector('#chatgpt-project-url');
@@ -65,6 +66,7 @@
 
     function setExpanded(expanded) {
       menu.hidden = !expanded;
+      result.hidden = !expanded;
       search.setAttribute('aria-expanded', String(expanded));
       if (!expanded) {
         search.removeAttribute('aria-activedescendant');
@@ -92,6 +94,7 @@
         candidate.setAttribute('aria-selected', String(candidate === option));
       });
       if (close) setExpanded(false);
+      value.dispatchEvent(new Event('change', { bubbles: true }));
     }
 
     function filterOptions() {
@@ -108,10 +111,9 @@
         return matches;
       });
       empty.hidden = visibleOptions.length > 0;
-      const suffix = query ? '件' : '冊';
       result.textContent = query
-        ? `${visibleOptions.length}${suffix}見つかりました。`
-        : `全${visibleOptions.length}${suffix}。読書中・積読を先に表示します。`;
+        ? `${visibleOptions.length}冊見つかりました。`
+        : `${visibleOptions.length}冊`;
       setExpanded(true);
       activeIndex = -1;
       options.forEach((option) => option.classList.remove('is-active'));
@@ -187,6 +189,8 @@
     copyButton.disabled = true;
     copyOpenButton.disabled = true;
     copyStatus.textContent = '';
+    formError.textContent = '';
+    form.querySelectorAll('[aria-invalid]').forEach((field) => field.removeAttribute('aria-invalid'));
     syncBookPickersFromValues();
   }
 
@@ -247,21 +251,44 @@
   modeInputs.forEach((input) => {
     input.addEventListener('change', () => {
       showMode(input.value);
-      copyStatus.textContent = '';
+      invalidateOutput();
     });
   });
 
 
+  function invalidateOutput() {
+    const hadOutput = Boolean(output.value);
+    output.value = '';
+    copyButton.disabled = true;
+    copyOpenButton.disabled = true;
+    copyStatus.textContent = hadOutput ? '入力内容が変わりました。文章を生成し直してください。' : '';
+    formError.textContent = '';
+    form.querySelectorAll('[aria-invalid]').forEach((field) => {
+      field.removeAttribute('aria-invalid');
+      field.removeAttribute('aria-describedby');
+    });
+  }
+  form.addEventListener('input', invalidateOutput);
+  form.addEventListener('change', invalidateOutput);
+
   form.addEventListener('submit', (event) => {
     event.preventDefault();
     copyStatus.textContent = '';
+    formError.textContent = '';
     try {
       output.value = buildPrompt();
       copyButton.disabled = false;
       copyOpenButton.disabled = false;
-      document.querySelector('#record-output-panel')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      output.focus({ preventScroll: true });
+      document.querySelector('#record-output-panel')?.scrollIntoView({ block: 'start' });
     } catch (error) {
-      copyStatus.textContent = error.message;
+      formError.textContent = error.message;
+      const selector = currentMode() === 'new' ? '[name="new_title"]'
+        : currentMode() === 'progress' ? '#progress-book-search' : '#review-book-search';
+      const field = form.querySelector(selector);
+      field?.setAttribute('aria-invalid', 'true');
+      field?.setAttribute('aria-describedby', 'record-error');
+      field?.focus();
     }
   });
 
@@ -318,7 +345,7 @@
       copyStatus.textContent = 'コピーしました。最初の1回だけ、下にChatGPTプロジェクトのURLを設定してください。';
       chatgptSetting.open = true;
       chatgptUrlInput.focus();
-      chatgptSetting.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      chatgptSetting.scrollIntoView({ block: 'nearest' });
       return;
     }
 

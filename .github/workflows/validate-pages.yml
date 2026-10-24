@@ -1,0 +1,64 @@
+name: Validate Pages
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - "ui/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check JavaScript syntax
+        run: |
+          node --check assets/js/bookshelf.js
+          node --check assets/js/record.js
+      - name: Build GitHub Pages
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
+      - name: Check generated pages
+        shell: python
+        run: |
+          from pathlib import Path
+          from html.parser import HTMLParser
+
+          class Page(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.h1 = 0
+                  self.ids = []
+                  self.references = []
+              def handle_starttag(self, tag, attrs):
+                  attrs = dict(attrs)
+                  if tag == "h1":
+                      self.h1 += 1
+                  if "id" in attrs:
+                      self.ids.append(attrs["id"])
+                  for key in ("for", "aria-controls", "aria-describedby"):
+                      self.references.extend(attrs.get(key, "").split())
+
+          pages = [Path("_site/index.html"), Path("_site/record/index.html"),
+                   Path("_site/reviews/index.html"), Path("_site/404.html")]
+          pages += sorted(Path("_site/books").glob("*/index.html"))
+          pages += sorted(Path("_site/reviews").glob("*/index.html"))
+          for path in dict.fromkeys(pages):
+              html = path.read_text()
+              parser = Page()
+              parser.feed(html)
+              assert parser.h1 == 1, (str(path), "h1 count", parser.h1)
+              assert len(parser.ids) == len(set(parser.ids)), (str(path), "duplicate ids")
+              assert all(ref in parser.ids for ref in parser.references), (str(path), "unresolved label/reference")
+              assert "{{" not in html and "{%" not in html, (str(path), "unrendered Liquid")
+          assert not Path("_site/docs").exists(), "Comparison documentation must stay outside Pages"
+          assert 'http-equiv="refresh"' in Path("_site/record.html").read_text()
+          assert not Path("_site/AI_RULES.md").exists()
+          print(f"Validated {len(set(pages))} generated pages and legacy redirect.")

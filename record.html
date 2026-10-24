@@ -4,17 +4,11 @@ title: 記録する
 description: 本の登録、読書中メモ、読了後の感想を迷わず入力するフォーム
 ---
 
-<section class="record-hero">
-  <p class="kicker">ADD / UPDATE</p>
-  <h1>何を書けばいいか、<br><span>思い出さなくていい。</span></h1>
-  <p>必要な質問に答えるだけで、reading-logへ反映するためのChatGPT用テキストを作ります。</p>
-</section>
-
-<section class="record-notice" aria-label="使い方">
-  <strong>使い方</strong>
-  <p>フォーム入力 → テキスト生成 → 「コピーしてChatGPTを開く」→ プロジェクト「読書管理」に貼り付けてください。初回だけ、このページ下部でプロジェクトのURLを設定します。フォームを開くたび、入力欄は空の状態から始まります。</p>
-  <p>このリポジトリは公開です。勤務先・家族・健康・家計など、公開したくない個人情報は入力しないでください。</p>
-</section>
+<header class="record-intro">
+  <div class="page-heading"><h1>記録する</h1></div>
+  <p>文章を生成し、ChatGPTの「読書管理」に貼り付けて反映します。必須以外は空欄で構いません。</p>
+  <p>公開される記録です。個人情報や業務上の機密は入力しないでください。</p>
+</header>
 
 <div class="record-layout">
   <section class="record-card">
@@ -27,14 +21,13 @@ description: 本の登録、読書中メモ、読了後の感想を迷わず入�
     <form id="record-form" autocomplete="off">
       <section class="record-fields" data-mode-panel="new">
         <div class="record-section-heading">
-          <p class="kicker">NEW BOOK</p>
           <h2>新しい本を登録</h2>
-          <p>書誌情報は全部埋めなくてOK。Amazon等の情報をそのまま貼っても使えます。</p>
+          <p>Amazonなどの書誌情報をそのまま貼り付けることもできます。</p>
         </div>
 
         <label class="field field--wide">
           <span>本のタイトル <em>必須</em></span>
-          <input name="new_title" type="text" placeholder="例：ドメイン駆動設計入門">
+          <input aria-required="true" name="new_title" type="text" placeholder="例：ドメイン駆動設計入門">
         </label>
         <div class="field-row">
           <label class="field">
@@ -70,11 +63,11 @@ description: 本の登録、読書中メモ、読了後の感想を迷わず入�
           </label>
         </div>
         <label class="field field--wide">
-          <span>なぜこの本を買った／読もうと思った？</span>
-          <textarea name="new_reason" rows="3" placeholder="きっかけをラフに。1文でもOK"></textarea>
+          <span>買った理由・読もうと思った理由</span>
+          <textarea name="new_reason" rows="3" placeholder="興味を持ったきっかけなど"></textarea>
         </label>
         <label class="field field--wide">
-          <span>この本から何を得たい？</span>
+          <span>読む目的</span>
           <textarea name="new_purpose" rows="4" placeholder="例：設計判断の考え方を知りたい。実務で使える具体例が欲しい。"></textarea>
           <small>「読み終える」ではなく、読んだ結果どうなりたいかを書くと後で評価しやすくなります。</small>
         </label>
@@ -82,9 +75,8 @@ description: 本の登録、読書中メモ、読了後の感想を迷わず入�
 
       <section class="record-fields" data-mode-panel="progress" hidden>
         <div class="record-section-heading">
-          <p class="kicker">READING NOTE</p>
           <h2>読書中のメモ</h2>
-          <p>全部埋める必要はありません。残したい項目だけで十分です。</p>
+          <p>読んだ範囲や気づきを記録します。</p>
         </div>
         <div class="field field--wide">
           <label class="field__label" for="progress-book-search">本 <em>必須</em></label>
@@ -96,7 +88,7 @@ description: 本の登録、読書中メモ、読了後の感想を迷わず入�
             <input name="progress_date" type="date" data-default-today>
           </label>
           <label class="field">
-            <span>どこまで読んだ？</span>
+            <span>読んだ範囲</span>
             <input name="progress_amount" type="text" placeholder="例：85ページ / 40% / 3章まで">
           </label>
         </div>
@@ -105,20 +97,19 @@ description: 本の登録、読書中メモ、読了後の感想を迷わず入�
           <textarea name="progress_note" rows="5" placeholder="印象に残った考え、疑問、納得できなかった点など"></textarea>
         </label>
         <label class="field field--wide">
-          <span>自分はどう考えた？</span>
+          <span>自分の考え</span>
           <textarea name="progress_thought" rows="4" placeholder="本に書いてあったことではなく、自分の反応・判断・気づき"></textarea>
         </label>
         <label class="field field--wide">
-          <span>自分に試すなら？</span>
-          <textarea name="progress_apply" rows="3" placeholder="仕事・学習・生活で試したいこと。なければ空欄でOK"></textarea>
+          <span>試したいこと</span>
+          <textarea name="progress_apply" rows="3" placeholder="仕事・学習・生活で試したいこと"></textarea>
         </label>
       </section>
 
       <section class="record-fields" data-mode-panel="review" hidden>
         <div class="record-section-heading">
-          <p class="kicker">FINISH / REVIEW</p>
           <h2>読了・感想</h2>
-          <p>感想を思い出すための質問です。短くても、辛口でも、そのままでOK。</p>
+          <p>読み方と評価を選び、残したい感想を入力してください。</p>
         </div>
         <div class="field field--wide">
           <label class="field__label" for="review-book-search">本 <em>必須</em></label>
@@ -146,53 +137,53 @@ description: 本の登録、読書中メモ、読了後の感想を迷わず入�
           </label>
         </div>
         <label class="field field--wide">
-          <span>最初の目的・期待に対して、どうだった？</span>
+          <span>目的・期待に対する感想</span>
           <textarea name="review_expectation" rows="4" placeholder="期待以上 / 期待通り / 期待外れ。その理由まで書ければ十分"></textarea>
         </label>
         <label class="field field--wide">
-          <span>良かった・刺さった・役立ちそうだった点</span>
-          <textarea name="review_good" rows="4" placeholder="特になければ「特になし」でOK"></textarea>
+          <span>良かった点・役立ちそうな点</span>
+          <textarea name="review_good" rows="4" placeholder="印象に残ったことがあれば入力"></textarea>
         </label>
         <label class="field field--wide">
-          <span>微妙だった・合わなかった・納得できなかった点</span>
-          <textarea name="review_bad" rows="4" placeholder="遠慮せずそのまま書く"></textarea>
+          <span>合わなかった点・疑問に思った点</span>
+          <textarea name="review_bad" rows="4" placeholder="気になった点があれば入力"></textarea>
         </label>
         <label class="field field--wide">
-          <span>読んで、自分の考えはどう変わった？</span>
-          <textarea name="review_thought" rows="4" placeholder="新しい気づき、逆に「変わらなかった」でもOK"></textarea>
+          <span>考えの変化</span>
+          <textarea name="review_thought" rows="4" placeholder="新しい気づきや、変わらなかった考えなど"></textarea>
         </label>
         <label class="field field--wide">
-          <span>自分の言葉で一言にすると？</span>
-          <textarea name="review_summary" rows="3" placeholder="この本は結局、自分にとって何だったか"></textarea>
+          <span>自分の言葉での要約</span>
+          <textarea name="review_summary" rows="3" placeholder="自分にとって大切だった内容を短く整理"></textarea>
         </label>
         <label class="field field--wide">
-          <span>実際にやることはある？</span>
-          <textarea name="review_action" rows="4" placeholder="1〜3個まで。なければ「特になし」でOK"></textarea>
-          <small>行動にしなくてよい本もあります。無理にアクションを作る必要はありません。</small>
+          <span>読後に実行すること</span>
+          <textarea name="review_action" rows="4" placeholder="実行したいことを1〜3個。なければ空欄で構いません"></textarea>
         </label>
       </section>
 
+      <p id="record-error" class="form-error" role="alert"></p>
       <div class="record-actions">
-        <button class="button button--primary" type="submit">ChatGPT用テキストを生成</button>
+        <button class="button button--primary" type="submit">文章を生成</button>
         <button class="button button--quiet" type="button" id="clear-record-form">入力をクリア</button>
       </div>
     </form>
   </section>
 
   <aside class="record-output" id="record-output-panel">
-    <p class="kicker">OUTPUT</p>
-    <h2>ChatGPTに渡す文章</h2>
-    <p>生成した文章をそのまま「読書管理」プロジェクトへ貼り付ければ、既存ルールに沿ってGitHubへ反映できます。</p>
-    <textarea id="record-output" rows="18" readonly placeholder="左のフォームに入力して生成してください"></textarea>
+    <h2>生成した文章</h2>
+    <p>内容を確認してから、ChatGPTに貼り付けてください。</p>
+    <label for="record-output" class="visually-hidden">生成した文章</label>
+    <textarea id="record-output" rows="12" readonly placeholder="フォームから文章を生成すると、ここに表示されます"></textarea>
     <div class="record-output__actions">
       <button class="button button--copy" type="button" id="copy-open-record-output" disabled>コピーしてChatGPTを開く</button>
-      <button class="button button--quiet button--copy-only" type="button" id="copy-record-output" disabled>コピーのみ</button>
+      <button class="button button--quiet button--copy-only" type="button" id="copy-record-output" disabled>文章をコピー</button>
     </div>
     <p class="copy-status" id="copy-status" role="status" aria-live="polite"></p>
 
     <details class="chatgpt-setting" id="chatgpt-setting">
-      <summary>ChatGPTプロジェクトのリンクを設定</summary>
-      <p>ChatGPTで「読書管理」を開き、ブラウザのURLを貼り付けてください。URLはこのブラウザ内だけに保存されます。</p>
+      <summary>ChatGPTのリンク設定</summary>
+      <p>「読書管理」プロジェクトのURLを設定すると、コピー後に開けます。URLはこのブラウザ内だけに保存されます。</p>
       <label class="chatgpt-setting__field" for="chatgpt-project-url">
         <span>プロジェクトURL</span>
         <input id="chatgpt-project-url" type="url" inputmode="url" autocomplete="url" placeholder="https://chatgpt.com/…">

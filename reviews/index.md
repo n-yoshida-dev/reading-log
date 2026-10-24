@@ -5,15 +5,15 @@ permalink: /reviews/
 
 # 週次レビュー
 
-[最新の週次レビュー]({{ '/reviews/latest/' | relative_url }})
-
 {% assign reviews = site.pages | where: 'type', 'weekly_review' | sort: 'week' | reverse %}
 {% if reviews.size > 0 %}
-  <ul>
-  {% for review in reviews %}
-    <li><a href="{{ review.url | relative_url }}">{{ review.title }}</a></li>
-  {% endfor %}
-  </ul>
+<ul class="review-list">
+{% for review in reviews %}
+{% unless review.url == '/reviews/latest/' %}
+<li><a href="{{ review.url | relative_url }}">{{ review.title }}</a></li>
+{% endunless %}
+{% endfor %}
+</ul>
 {% else %}
-過去の週次レビューはまだありません。
+<p>過去の週次レビューはまだありません。</p>
 {% endif %}
