@@ -1,0 +1,98 @@
+[
+  {
+    "page": "bookshelf",
+    "size": "pc",
+    "height": 1000,
+    "scroll": 1425,
+    "title": "本棚",
+    "width": 1440
+  },
+  {
+    "page": "bookshelf",
+    "size": "mobile",
+    "height": 844,
+    "scroll": 375,
+    "title": "本棚",
+    "width": 390
+  },
+  {
+    "page": "book-reading",
+    "size": "pc",
+    "height": 1000,
+    "scroll": 1425,
+    "title": "科学的根拠に基づく最高の勉強法",
+    "width": 1440
+  },
+  {
+    "page": "book-reading",
+    "size": "mobile",
+    "height": 844,
+    "scroll": 375,
+    "title": "科学的根拠に基づく最高の勉強法",
+    "width": 390
+  },
+  {
+    "page": "book-finished",
+    "size": "pc",
+    "height": 1000,
+    "scroll": 1425,
+    "title": "成瀬は天下を取りにいく",
+    "width": 1440
+  },
+  {
+    "page": "book-finished",
+    "size": "mobile",
+    "height": 844,
+    "scroll": 375,
+    "title": "成瀬は天下を取りにいく",
+    "width": 390
+  },
+  {
+    "page": "review",
+    "size": "pc",
+    "height": 1000,
+    "scroll": 1425,
+    "title": "最新の週次レビュー",
+    "width": 1440
+  },
+  {
+    "page": "review",
+    "size": "mobile",
+    "height": 844,
+    "scroll": 375,
+    "title": "最新の週次レビュー",
+    "width": 390
+  },
+  {
+    "page": "reviews",
+    "size": "pc",
+    "height": 1000,
+    "scroll": 1440,
+    "title": "週次レビュー",
+    "width": 1440
+  },
+  {
+    "page": "reviews",
+    "size": "mobile",
+    "height": 844,
+    "scroll": 375,
+    "title": "週次レビュー",
+    "width": 390
+  },
+  {
+    "page": "404",
+    "size": "pc",
+    "height": 1000,
+    "scroll": 1440,
+    "title": "ページが見つかりません",
+    "width": 1440
+  },
+  {
+    "page": "404",
+    "size": "mobile",
+    "height": 844,
+    "scroll": 390,
+    "title": "ページが見つかりません",
+    "width": 390
+  }
+]
