@@ -10,7 +10,7 @@ published_at: 2024-02-15
 page_count: 256
 status: reading
 progress: 50
-reading_order: 1
+reading_order: 4
 purchased_at:
 started_at: 2026-09-02
 finished_at:
