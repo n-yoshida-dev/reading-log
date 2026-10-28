@@ -40,6 +40,18 @@ layout: default
         <div class="progress__track"><span style="width: {{ progress }}%"></span></div>
       </div>
 
+      {% if page.priority_score != nil %}
+      <section class="priority-breakdown" aria-label="AIによる読書優先度評価">
+        <div class="priority-breakdown__heading"><strong>読書優先度 {{ page.priority_score }} / 100</strong><span>AIによる参考評価{% if page.priority_scored_at %} · {{ page.priority_scored_at }}{% endif %}</span></div>
+        <dl>
+          <div><dt>課題への貢献</dt><dd>{{ page.priority_contribution }} / 5</dd></div>
+          <div><dt>緊急性</dt><dd>{{ page.priority_urgency }} / 5</dd></div>
+          <div><dt>先送り損失</dt><dd>{{ page.priority_delay_cost }} / 5</dd></div>
+          <div><dt>実践可能性</dt><dd>{{ page.priority_actionability }} / 5</dd></div>
+          <div><dt>読書効率</dt><dd>{{ page.priority_efficiency }} / 5</dd></div>
+        </dl>
+      </section>
+      {% endif %}
       <dl class="book-facts">
         {% if page.category %}<div><dt class="visually-hidden">カテゴリ</dt><dd>{{ page.category }}</dd></div>{% endif %}
         {% if page.user_rating %}<div><dt>自分の評価</dt><dd>★ {{ page.user_rating }} / 5</dd></div>{% endif %}
