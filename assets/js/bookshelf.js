@@ -26,6 +26,7 @@
   };
 
   const compareCards = (a, b, mode) => {
+    if (mode === 'priority') return Number(b.dataset.priorityScore) - Number(a.dataset.priorityScore) || compareTitle(a, b);
     if (mode === 'title') return compareTitle(a, b);
     if (mode === 'user-rating') return Number(b.dataset.userRating) - Number(a.dataset.userRating) || compareTitle(a, b);
     if (mode === 'rating') return Number(b.dataset.rating) - Number(a.dataset.rating) || compareTitle(a, b);
