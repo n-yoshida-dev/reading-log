@@ -16,6 +16,13 @@ page_count:
 status: unread
 progress: 0
 reading_order: 999
+priority_contribution:
+priority_urgency:
+priority_delay_cost:
+priority_actionability:
+priority_efficiency:
+priority_score:
+priority_scored_at:
 purchased_at:
 started_at:
 finished_at:
