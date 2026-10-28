@@ -12,6 +12,7 @@
   class="book-card"
   data-book-card
   data-status="{{ book.status | escape }}"
+  data-priority-score="{{ book.priority_score | default: -1 }}"
   data-title="{{ book.title | escape }}"
   data-author="{{ book.author | escape }}"
   data-category="{{ book.category | escape }}"
@@ -46,6 +47,7 @@
     </div>
     {% endif %}
     <h3><a href="{{ book.url | relative_url }}">{{ book.title }}</a></h3>
+    {% if book.priority_score != nil and book.status != "finished" and book.status != "skimmed" and book.status != "abandoned" %}<p class="book-card__score" aria-label="AI優先度スコア {{ book.priority_score }}点／100点">優先度 <strong>{{ book.priority_score }}</strong><span> / 100</span></p>{% endif %}
     {% if book.author %}<p class="book-card__author">{{ book.author }}</p>{% endif %}
     <div class="book-card__meta">
       {% if book.category %}<span class="category-chip">{{ book.category }}</span>{% endif %}
