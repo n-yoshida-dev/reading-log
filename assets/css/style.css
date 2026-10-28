@@ -189,3 +189,16 @@ button, a, input, select, textarea, summary { -webkit-tap-highlight-color: trans
 @media (prefers-reduced-motion: reduce) {
  *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
 }
+
+/* AI priority score: compact bookshelf view and detail breakdown */
+.book-card__score { margin: 6px 0 0; font-size: var(--text-sm); color: var(--muted); }
+.book-card__score strong { font-size: 1.12rem; color: var(--ink); font-variant-numeric: tabular-nums; }
+.book-card__score span { font-variant-numeric: tabular-nums; }
+.priority-breakdown { margin-top: 20px; padding: 14px 16px; border: 1px solid var(--line); border-radius: var(--radius-sm); }
+.priority-breakdown__heading { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; }
+.priority-breakdown__heading span { font-size: var(--text-sm); color: var(--muted); }
+.priority-breakdown dl { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 4px 20px; margin: 10px 0 0; }
+.priority-breakdown dl div { display: flex; justify-content: space-between; gap: 8px; font-size: var(--text-sm); }
+.priority-breakdown dt { color: var(--muted); }
+.priority-breakdown dd { margin: 0; font-variant-numeric: tabular-nums; }
+@media (max-width: 620px) { .priority-breakdown dl { grid-template-columns: 1fr; } }
