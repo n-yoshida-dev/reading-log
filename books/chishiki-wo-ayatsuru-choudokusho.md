@@ -10,7 +10,14 @@ published_at: 2019-11-20
 page_count: 240
 status: unread
 progress: 0
-reading_order: 12
+reading_order: 28
+priority_contribution: 2
+priority_urgency: 1
+priority_delay_cost: 1
+priority_actionability: 3
+priority_efficiency: 3
+priority_score: 36
+priority_scored_at: 2026-11-01
 purchased_at:
 started_at:
 finished_at:

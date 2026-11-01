@@ -10,7 +10,14 @@ published_at: 2021-09-16
 page_count: 240
 status: unread
 progress: 0
-reading_order: 32
+reading_order: 10
+priority_contribution: 4
+priority_urgency: 2
+priority_delay_cost: 3
+priority_actionability: 3
+priority_efficiency: 3
+priority_score: 61
+priority_scored_at: 2026-11-01
 purchased_at:
 started_at:
 finished_at:

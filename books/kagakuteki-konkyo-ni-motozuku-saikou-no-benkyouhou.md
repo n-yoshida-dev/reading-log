@@ -9,19 +9,19 @@ publisher: "KADOKAWA"
 published_at: 2024-02-15
 page_count: 256
 status: reading
-progress: 40
-reading_order: 4
-priority_contribution: 3
-priority_urgency: 2
-priority_delay_cost: 1
-priority_actionability: 4
-priority_efficiency: 2
-priority_score: 48
-priority_scored_at: 2026-10-28
+progress: 48
+reading_order: 1
+priority_contribution: 5
+priority_urgency: 4
+priority_delay_cost: 3
+priority_actionability: 5
+priority_efficiency: 5
+priority_score: 87
+priority_scored_at: 2026-11-01
 purchased_at:
 started_at: 2026-09-02
 finished_at:
-last_read_at: 2026-10-25
+last_read_at: 2026-10-27
 purpose: ""
 tags: []
 cover_image: "https://m.media-amazon.com/images/I/71Jt15AAuUL._SL1500_.jpg"
@@ -173,6 +173,22 @@ ChatGPTとか活用できそうと思った。
 これらの学習方法をまだ習慣化できていない人にとっては、日常的に「なぜ？」と問いかけたり、学んだことを自分の言葉で説明したりする習慣をつけることが重要だと思う。
 
 また、AIを活用して質問や復習の機会を仕組み化すれば、意識しなくても継続的に実践できるようになると考えた。
+
+### 2026-10-27
+
+- 進捗: 122ページ（全256ページの約48％）
+
+#### 気になったこと・覚えておきたいこと
+
+今回のテーマはインターリービング。関連する複数のテーマや問題形式を混ぜて練習することで、どの知識や解き方を使うかを自分で判断する練習になる。
+
+#### 自分はどう考えたか
+
+現在の資格学習では、複数単元からランダムに出題される問題演習がこの方法に当たると考えた。一方、初めて学ぶ内容まで最初から混ぜるより、まず単元ごとにブロック学習で基礎を作り、その後の復習や問題演習でインターリービングを取り入れる方がよい。
+
+#### 自分に試すなら
+
+初学では単元ごとに理解し、復習では複数単元を混ぜた問題演習を行う現在の方法を続ける。
 
 ## 感想・自分の考え
 

@@ -10,7 +10,14 @@ published_at: 2015-11-26
 page_count: 400
 status: unread
 progress: 0
-reading_order: 14
+reading_order: 8
+priority_contribution: 4
+priority_urgency: 3
+priority_delay_cost: 3
+priority_actionability: 4
+priority_efficiency: 1
+priority_score: 65
+priority_scored_at: 2026-11-01
 purchased_at:
 started_at:
 finished_at:
