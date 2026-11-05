@@ -14,8 +14,8 @@
 ## このリポジトリ固有の注意
 
 - **public リポジトリ。GitHub Pages で誰でも読める。** 個人情報・家計・勤務先・長い引用を書かない（`AI_RULES.md` 10）
-- カード番号・口座番号・残高は `.claude/hooks/sensitive-numbers-guard.py` が機械的にブロックする。
-  正本は `~/workspace/ops/.claude/hooks/`。直すときは ops 側を直して配る（手順は `~/workspace/personal/CLAUDE.md`）
+- カード番号・口座番号・残高は機密の数字の見張り（ユーザーレベルのフック `~/.claude/hooks/sensitive-numbers-guard.sh`）が機械的にブロックする。
+  本体は `~/workspace/ops/.claude/hooks/sensitive-numbers-guard.py`。直すときは ops 側を直す（決まりは `~/workspace/personal/CLAUDE.md`。このリポジトリのコピーは 2026-11-05 に外した）
 - Jekyll サイト。サイトに出したくないファイル・ディレクトリを追加したら `_config.yml` の `exclude` に足す
   （`.` 始まりのものは自動で除外される）
 - 本ファイル先頭の front matter（`---` で囲まれた部分）はサイト表示とソートに使われる。
