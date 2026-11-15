@@ -10,14 +10,14 @@ published_at: 2024-02-15
 page_count: 256
 status: reading
 progress: 48
-reading_order: 1
+reading_order: 2
 priority_contribution: 5
-priority_urgency: 4
-priority_delay_cost: 3
+priority_urgency: 3
+priority_delay_cost: 2
 priority_actionability: 5
 priority_efficiency: 5
-priority_score: 87
-priority_scored_at: 2026-11-08
+priority_score: 78
+priority_scored_at: 2026-11-15
 purchased_at:
 started_at: 2026-09-02
 finished_at:

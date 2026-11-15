@@ -17,7 +17,7 @@ priority_delay_cost: 3
 priority_actionability: 4
 priority_efficiency: 1
 priority_score: 65
-priority_scored_at: 2026-11-08
+priority_scored_at: 2026-11-15
 purchased_at:
 started_at:
 finished_at:
